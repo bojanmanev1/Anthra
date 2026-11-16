@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="mk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANTHRA | Твој простор. Наша експертиза. - Премиум реновации, плочки, гипс картон и винил подови</title>
+  <meta name="description" content="ANTHRA - Врвна градежна изведба: лепење плочки голем формат, спуштени тавани и гипс картон со LED осветлување, водоотпорни винил (LVT/SPC) подови и комплетно реновирање.">
+  
+  <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            anthra: {
+              red: '#E5252A',
+              redDark: '#B91418',
+              dark: '#0B0C0E',
+              card: '#131519',
+              slate: '#1E2229',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['Space Grotesk', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#0B0C0E] text-zinc-100 font-sans antialiased selection:bg-[#E5252A] selection:text-white relative overflow-x-hidden">
+
+  <!-- MOUSE CURSOR GLOW ELEMENTS (TOP LEVEL OF BODY, NEVER TRAPPED IN TRANSFORM) -->
+  <div id="cursorAmbientSpotlight" class="cursor-ambient-spotlight"></div>
+  <div id="cursorGlowRing" class="cursor-glow-ring"></div>
+  <div id="cursorGlowDot" class="cursor-glow-dot"></div>
+
+  <!-- Ambient Red Atmospheric Glows -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-[#E5252A]/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-1/3 right-10 w-[500px] h-[500px] bg-[#E5252A]/5 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+
+  <!-- TOP NOTIFICATION / TRUST STRIP -->
+  <div class="bg-[#121418] border-b border-white/5 py-1.5 px-4 text-xs text-zinc-400">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-zinc-300 font-medium">Слободни термини за увид овој месец</span>
+        </span>
+        <span class="hidden sm:inline text-zinc-600">|</span>
+        <span class="hidden sm:inline text-zinc-400">📍 Скопје & цела Македонија</span>
+      </div>
+      <div class="flex items-center gap-4 text-zinc-300">
+        <a href="tel:+38970000000" class="hover:text-[#E5252A] transition-colors flex items-center gap-1">
+          <svg class="w-3.5 h-3.5 text-[#E5252A]" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
+          <span class="font-mono font-semibold">+389 70 000 000</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-50 glass-nav transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Branding -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <img src="assets/images/logo.png" alt="ANTHRA Лого" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
+        <a href="#process" class="hover:text-[#E5252A] transition-colors">Фази на изведба</a>
+        <a href="#beforeAfter" class="hover:text-[#E5252A] transition-colors">Пред / Потоа</a>
+        <a href="#services" class="hover:text-[#E5252A] transition-colors">Услуги</a>
+        <a href="#gallery" class="hover:text-[#E5252A] transition-colors">Галерија</a>
+        <a href="#whyUs" class="hover:text-[#E5252A] transition-colors">Зошто ANTHRA</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="https://wa.me/38970000000" target="_blank" class="p-2.5 rounded-lg bg-emerald-950/50 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-900/60 transition-colors" title="Директен разговор на WhatsApp">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.54 1.861.859 2.796.859 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.768-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+        </a>
+        <a href="#inquirySection" class="px-5 py-2.5 rounded-lg bg-[#E5252A] text-white font-semibold text-sm hover:bg-[#B91418] transition-all glow-red-sm flex items-center gap-2">
+          <span>Закажи бесплатен увид</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-zinc-800 text-zinc-300 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNav" class="hidden md:hidden bg-[#121418] border-b border-white/10 px-4 py-4 space-y-3">
+      <a href="#process" class="block py-2 text-zinc-300 hover:text-[#E5252A] mobile-link">Фази на изведба</a>
+      <a href="#beforeAfter" class="block py-2 text-zinc-300 hover:text-[#E5252A] mobile-link">Пред / Потоа Сплит</a>
+      <a href="#services" class="block py-2 text-zinc-300 hover:text-[#E5252A] mobile-link">Услуги & Винил Подови</a>
+      <a href="#gallery" class="block py-2 text-zinc-300 hover:text-[#E5252A] mobile-link">Галерија Проекти</a>
+      <a href="#whyUs" class="block py-2 text-zinc-300 hover:text-[#E5252A] mobile-link">Зошто ANTHRA</a>
+      <a href="#inquirySection" class="block w-full text-center py-3 bg-[#E5252A] text-white font-bold rounded-lg mobile-link">Закажи бесплатен увид</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden bg-carbon">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Slogan Badge -->
+      <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-red-950/40 border border-[#E5252A]/40 text-[#E5252A] text-xs font-bold uppercase tracking-widest mb-6">
+        <span class="w-2 h-2 rounded-full bg-[#E5252A] animate-ping"></span>
+        ТВОЈ ПРОСТОР. НАША ЕКСПЕРТИЗА.
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Column: Copy & Value Proposition -->
+        <div class="lg:col-span-7 space-y-6">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            Премиум градежна изведба со <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-[#E5252A]">ласерска прецизност</span>.
+          </h1>
+
+          <p class="text-lg text-zinc-300 max-w-2xl leading-relaxed">
+            Специјализирани за <strong class="text-white font-semibold">лепење плочки од голем формат</strong>, модерни спуштени тавани со <strong class="text-white font-semibold">гипс картон & скриено LED светло</strong>, и најсовремени водоотпорни <strong class="text-white font-semibold">винил (SPC/LVT) подови</strong>.
+          </p>
+
+          <!-- Core Value Micro Badges -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+            <div class="p-3 rounded-lg bg-[#14161A] border border-white/5 flex items-center gap-2.5">
+              <span class="text-[#E5252A] text-lg">📐</span>
+              <div>
+                <div class="text-xs text-zinc-400">Прецизност</div>
+                <div class="text-xs font-bold text-white">45° Герунг споеви</div>
+              </div>
+            </div>
+            <div class="p-3 rounded-lg bg-[#14161A] border border-white/5 flex items-center gap-2.5">
+              <span class="text-[#E5252A] text-lg">💧</span>
+              <div>
+                <div class="text-xs text-zinc-400">100% Отпорност</div>
+                <div class="text-xs font-bold text-white">SPC Винил подови</div>
+              </div>
+            </div>
+            <div class="p-3 rounded-lg bg-[#14161A] border border-white/5 flex items-center gap-2.5 col-span-2 sm:col-span-1">
+              <span class="text-[#E5252A] text-lg">🤝</span>
+              <div>
+                <div class="text-xs text-zinc-400">Гаранција</div>
+                <div class="text-xs font-bold text-white">Договорен рок</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-4">
+            <a href="#inquirySection" class="px-7 py-3.5 rounded-xl bg-[#E5252A] text-white font-bold text-base hover:bg-[#B91418] transition-all glow-red flex items-center gap-2">
+              <span>Закажи бесплатен увид на терен</span>
+              <span>&rarr;</span>
+            </a>
+            <a href="#gallery" class="px-6 py-3.5 rounded-xl bg-[#181B20] text-zinc-200 hover:text-white hover:bg-zinc-800 border border-white/10 font-semibold text-base transition-colors flex items-center gap-2">
+              <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span>Погледни изработени објекти</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Quick Stats Card -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-2xl glass-panel p-6 border border-white/10 overflow-hidden shadow-2xl">
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-[#E5252A]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded bg-[#E5252A] transform rotate-45"></span>
+                <span class="font-mono text-sm tracking-widest text-zinc-300">ANTHRA CRAFT PROTOCOL</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-500/30">СЕРТИФИЦИРАНО</span>
+            </div>
+
+            <!-- Hero Image Preview -->
+            <div class="my-5 rounded-xl overflow-hidden border border-white/10 relative group">
+              <img src="assets/images/apartment-complete.jpg" alt="ANTHRA Комплетно Реновирање" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                <div class="text-xs">
+                  <span class="text-[#E5252A] font-bold">● КОМПЛЕТНА РЕНОВАЦИЈА:</span> Спуштен гипс таван со LED, паркет и винил подна изведба
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-3 gap-3 text-center">
+              <div class="p-2.5 rounded-lg bg-[#0B0C0E]/70 border border-white/5">
+                <div class="font-mono text-xl font-extrabold text-[#E5252A]">500+</div>
+                <div class="text-[11px] text-zinc-400">Објекти завршени</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-[#0B0C0E]/70 border border-white/5">
+                <div class="font-mono text-xl font-extrabold text-white">0.5mm</div>
+                <div class="text-[11px] text-zinc-400">Ласерска толеранција</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-[#0B0C0E]/70 border border-white/5">
+                <div class="font-mono text-xl font-extrabold text-[#E5252A]">100%</div>
+                <div class="text-[11px] text-zinc-400">Договорна гаранција</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REAL CONSTRUCTION PHASES & CRAFTSMANSHIP PROCESS -->
+  <section id="process" class="py-20 bg-[#0E1014] border-y border-white/5 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#E5252A]"></span>
+          Фази на изведба (Чекор по чекор)
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Како го трансформираме вашиот простор?
+        </h2>
+        <p class="text-zinc-400 mt-3 text-base">
+          Кликнете на фазите подолу за да го видите текот на вистинската изведба: од бесплатен увид и ласерско мерење, до финално предаден простор.
+        </p>
+      </div>
+
+      <!-- Stage Selector Tabs -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <button data-stage="1" class="stage-btn p-3.5 rounded-xl border border-[#E5252A] bg-[#E5252A] text-white font-bold text-xs sm:text-sm text-left transition-all glow-red-sm flex items-center justify-between">
+          <span>1. Увид & Демонтажа</span>
+          <span class="font-mono opacity-70">01</span>
+        </button>
+        <button data-stage="2" class="stage-btn p-3.5 rounded-xl border border-white/10 bg-[#14161A] text-zinc-400 hover:text-white font-bold text-xs sm:text-sm text-left transition-all flex items-center justify-between">
+          <span>2. Гипс & LED Тавани</span>
+          <span class="font-mono opacity-70">02</span>
+        </button>
+        <button data-stage="3" class="stage-btn p-3.5 rounded-xl border border-white/10 bg-[#14161A] text-zinc-400 hover:text-white font-bold text-xs sm:text-sm text-left transition-all flex items-center justify-between">
+          <span>3. Винил & Плочки</span>
+          <span class="font-mono opacity-70">03</span>
+        </button>
+        <button data-stage="4" class="stage-btn p-3.5 rounded-xl border border-white/10 bg-[#14161A] text-zinc-400 hover:text-white font-bold text-xs sm:text-sm text-left transition-all flex items-center justify-between">
+          <span>4. Финален Луксуз</span>
+          <span class="font-mono opacity-70">04</span>
+        </button>
+      </div>
+
+      <!-- Interactive Stage Display Panel -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#131519] border border-white/10 rounded-2xl p-6 lg:p-8">
+        
+        <!-- Visual Display with dynamic image -->
+        <div class="lg:col-span-7 relative rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black">
+          <img id="visualizerImg" src="assets/images/renovation-before.jpg" alt="ANTHRA Фаза на работа" class="w-full h-80 sm:h-96 object-cover transition-opacity duration-300">
+          <div class="absolute top-4 left-4">
+            <span id="stageBadge" class="px-3 py-1 rounded bg-black/80 backdrop-blur-md text-[#E5252A] border border-[#E5252A]/40 text-xs font-mono font-bold uppercase">
+              Увид & Подготовка
+            </span>
+          </div>
+        </div>
+
+        <!-- Description & Inspection Points -->
+        <div class="lg:col-span-5 space-y-5">
+          <h3 id="stageTitle" class="text-2xl font-bold text-white leading-snug">
+            Фаза 1: Увид на терен, Демонтажа & Премер
+          </h3>
+
+          <p id="stageDesc" class="text-zinc-300 text-sm leading-relaxed">
+            Секој успешен простор започнува со точна ласерска геометрија. Излегуваме на терен, го отстрануваме стариот материјал, ги испитуваме подовите и ѕидовите со професионални ласерски нивелири со толеранција под 1mm и ја подготвуваме основата.
+          </p>
+
+          <div class="space-y-3 pt-2 border-t border-white/10">
+            <div class="text-xs font-mono uppercase tracking-wider text-zinc-400">Стандарди на ANTHRA изведба:</div>
+            <ul id="stagePoints" class="space-y-2">
+              <li class="flex items-start gap-2.5 text-zinc-300 text-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#E5252A] mt-2 shrink-0"></span>
+                <span>Ласерска проверка на рамнини и прави агли (90°)</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-zinc-300 text-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#E5252A] mt-2 shrink-0"></span>
+                <span>Чиста демонтажа и организиран одвоз на градежен шут</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-zinc-300 text-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#E5252A] mt-2 shrink-0"></span>
+                <span>Хидроизолациска подготовка и прајмери за максимална атхезија</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-4">
+            <a href="#inquirySection" class="inline-flex items-center gap-2 text-[#E5252A] font-bold text-sm hover:underline">
+              <span>Закажи увид за вашиот простор</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE BEFORE & AFTER SLIDER SECTION -->
+  <section id="beforeAfter" class="py-20 bg-carbon relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase mb-3">
+          Вистински Резултати
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Интерактивна споредба: Пред и Потоа
+        </h2>
+        <p class="text-zinc-400 mt-2 text-sm sm:text-base">
+          Повлечете го црвениот слајдер лево и десно за да ја видите трансформацијата од сурова руина до совршена изведба.
+        </p>
+      </div>
+
+      <!-- Slider Container -->
+      <div class="max-w-5xl mx-auto relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-black">
+        
+        <div class="relative w-full h-[380px] sm:h-[500px] select-none" id="baWrapper">
+          
+          <!-- AFTER Image (Finished Luxury Masterpiece) -->
+          <img src="assets/images/tiles-bathroom.jpg" alt="После изведба на ANTHRA" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute top-4 right-4 z-10 px-3 py-1.5 rounded bg-[#E5252A] text-white font-extrabold text-xs tracking-wider shadow-lg">
+            ПОТОА (ANTHRA ИЗВЕДБА)
+          </div>
+          <div class="absolute bottom-4 right-4 z-10 px-3 py-1 bg-black/70 backdrop-blur-md rounded text-zinc-300 text-xs hidden sm:block">
+            Керамика 120x60 • Ниша со LED • 45° Герунг
+          </div>
+
+          <!-- BEFORE Image (Raw demolition state of the EXACT same bathroom) -->
+          <div id="baBeforeImg" class="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-[#E5252A]" style="width: 50%;">
+            <img id="baBeforeImgTag" src="assets/images/renovation-before.jpg" alt="Пред реновирање" class="absolute inset-y-0 left-0 h-full max-w-none object-cover">
+            <div class="absolute top-4 left-4 z-10 px-3 py-1.5 rounded bg-black/80 text-zinc-300 font-bold text-xs tracking-wider border border-white/10">
+              ПРЕД РЕНОВИРАЊЕ
+            </div>
+            <div class="absolute bottom-4 left-4 z-10 px-3 py-1 bg-black/80 backdrop-blur-md rounded text-zinc-400 text-xs hidden sm:block">
+              Сурова состојба: отстранети стари плочки, цевки и шут
+            </div>
+          </div>
+
+          <!-- Center Draggable Line Handle -->
+          <div id="baHandle" class="absolute inset-y-0 -ml-4 flex items-center justify-center pointer-events-none z-20" style="left: 50%;">
+            <div class="w-8 h-8 rounded-full bg-[#E5252A] text-white flex items-center justify-center shadow-xl font-mono text-xs font-bold ring-4 ring-black/60">
+              &#10231;
+            </div>
+          </div>
+
+          <!-- Invisible Range Input for Dragging -->
+          <input id="baRange" type="range" min="0" max="100" value="50" class="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30" aria-label="Слајдер за пред и потоа">
+
+        </div>
+
+        <!-- Slider Bottom Legend -->
+        <div class="bg-[#14161A] border-t border-white/10 px-6 py-3 flex items-center justify-between text-xs text-zinc-400 font-mono">
+          <span class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-zinc-600"></span> 0% Суров простор
+          </span>
+          <span id="baPercent" class="text-[#E5252A] font-bold">50%</span>
+          <span class="flex items-center gap-2">
+            100% Финален луксуз <span class="w-2 h-2 rounded-full bg-[#E5252A]"></span>
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION (INCLUDES VINYL FLOORING!) -->
+  <section id="services" class="py-24 bg-[#0B0C0E] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase mb-3">
+            Специјалности & Изведба
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Што работиме најдобро
+          </h2>
+        </div>
+        <p class="text-zinc-400 max-w-md text-sm sm:text-base">
+          Од поединечна фаза (само плочки, гипс или под) до целосна адаптација со договор и гаранција.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- SERVICE 1: КЕРАМИЧКИ & ГРАНИТНИ ПЛОЧКИ -->
+        <div class="rounded-2xl glass-panel p-6 border border-white/10 border-glow transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="h-48 rounded-xl overflow-hidden mb-6 relative">
+              <img src="assets/images/tiles-bathroom.jpg" alt="Лепење плочки" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-[#E5252A] font-mono text-xs font-bold border border-white/10">01</div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#E5252A] transition-colors">
+              Керамички & Гранитни Плочки
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+              Поставување на плочки од голем формат за модерни бањи, кујни и тераси. Прецизни 45° герунг споеви без пластични лајсни, хидроизолација и епоксидно фугирање.
+            </p>
+            <ul class="text-xs text-zinc-300 space-y-1.5 border-t border-white/5 pt-3">
+              <li class="flex items-center gap-2">✓ Формати: 60x60, 120x60, 120x120cm</li>
+              <li class="flex items-center gap-2">✓ Обработка на герунг агли под 45°</li>
+              <li class="flex items-center gap-2">✓ Линиски скриени сифони во пад</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <a href="#inquirySection" class="text-xs font-bold text-[#E5252A] group-hover:underline flex items-center gap-1">
+              <span>Закажи увид за плочки</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- SERVICE 2: ГИПС КАРТОН & СУВА ГРАДБА -->
+        <div class="rounded-2xl glass-panel p-6 border border-white/10 border-glow transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="h-48 rounded-xl overflow-hidden mb-6 relative">
+              <img src="assets/images/gypsum-ceiling.jpg" alt="Гипс картон тавани" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-[#E5252A] font-mono text-xs font-bold border border-white/10">02</div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#E5252A] transition-colors">
+              Гипс Картон & Скриено LED Светло
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+              Архитектонски спуштени тавани, скриени завесници, индиректни LED светлечки канали и акустични преградни ѕидови со врвни Knauf материјали.
+            </p>
+            <ul class="text-xs text-zinc-300 space-y-1.5 border-t border-white/5 pt-3">
+              <li class="flex items-center gap-2">✓ Каскадни модерни тавани со ниши</li>
+              <li class="flex items-center gap-2">✓ Вградување магнетни шини за рефлектори</li>
+              <li class="flex items-center gap-2">✓ Звучна и термо изолација во прегради</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <a href="#inquirySection" class="text-xs font-bold text-[#E5252A] group-hover:underline flex items-center gap-1">
+              <span>Закажи увид за гипс</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- SERVICE 3: ВИНИЛ ПОДОВИ (LVT / SPC) - USER REQUEST FEATURED! -->
+        <div class="rounded-2xl glass-panel p-6 border-2 border-[#E5252A]/50 bg-gradient-to-b from-[#181214] to-[#131519] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-[#E5252A] text-white text-[10px] font-extrabold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
+            ХИТ ИЗБОР
+          </div>
+          <div>
+            <div class="h-48 rounded-xl overflow-hidden mb-6 relative">
+              <img src="assets/images/flooring-vinyl.jpg" alt="Винил подови монтажа" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-[#E5252A] font-mono text-xs font-bold border border-white/10">03</div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#E5252A] transition-colors flex items-center gap-2">
+              <span>Винил Подови (LVT / SPC)</span>
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+              Најмодерното решение за подови денес! <strong class="text-white">100% водоотпорни</strong>, исклучително тивки при чекорење, со луксузна текстура на дрво или природен камен. Идеални за бањи, кујни и цели станови.
+            </p>
+            <ul class="text-xs text-zinc-300 space-y-1.5 border-t border-white/5 pt-3">
+              <li class="flex items-center gap-2 font-medium text-white">✓ 100% Водоотпорни (SPC јадро без деформација)</li>
+              <li class="flex items-center gap-2">✓ Прецизна монтажа на клик систем или лепење</li>
+              <li class="flex items-center gap-2">✓ Погодно за подно греење и домашни миленици</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <a href="#inquirySection" class="text-xs font-bold text-[#E5252A] group-hover:underline flex items-center gap-1">
+              <span>Закажи увид за винил подови</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- SERVICE 4: ДРВЕНИ ПОДОВИ & ПАРКЕТ / ЛАМИНАТ -->
+        <div class="rounded-2xl glass-panel p-6 border border-white/10 border-glow transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="h-48 rounded-xl overflow-hidden mb-6 relative">
+              <img src="assets/images/flooring-parquet.jpg" alt="Дрвени подови и паркет" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-[#E5252A] font-mono text-xs font-bold border border-white/10">04</div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#E5252A] transition-colors">
+              Дрвени Подови & Паркети
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+              Класична топлина на природно дрво. Поставување рибина коска (herringbone / chevron), трислоен паркет, ламинати од висока класа AC4/AC5 и прецизни подни лајсни.
+            </p>
+            <ul class="text-xs text-zinc-300 space-y-1.5 border-t border-white/5 pt-3">
+              <li class="flex items-center gap-2">✓ Рибина коска (Herringbone) шема</li>
+              <li class="flex items-center gap-2">✓ Машинско хоблување со безпрашлив систем</li>
+              <li class="flex items-center gap-2">✓ МДФ бели и алуминиумски лајсни</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <a href="#inquirySection" class="text-xs font-bold text-[#E5252A] group-hover:underline flex items-center gap-1">
+              <span>Закажи увид за паркет</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- SERVICE 5: КОМПЛЕТНИ РЕНОВАЦИИ КЛУЧ НА РАКА -->
+        <div class="rounded-2xl glass-panel p-6 border border-white/10 border-glow transition-all duration-300 flex flex-col justify-between group md:col-span-2 lg:col-span-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div class="h-56 rounded-xl overflow-hidden relative">
+              <img src="assets/images/apartment-complete.jpg" alt="Комплетно реновирање стан" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-[#E5252A] font-mono text-xs font-bold border border-white/10">05</div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-[#E5252A] transition-colors">
+                Комплетни Реновации „Клуч на рака“
+              </h3>
+              <p class="text-zinc-300 text-sm leading-relaxed mb-4">
+                Нема потреба да бркате 5 различни мајстори. ANTHRA ја презема целата одговорност: од рушење на стари ѕидови и изнесување шут, преку електрика, вода, гипс и плочки, сѐ до монтажа на подови и финално чистење.
+              </p>
+              <div class="grid grid-cols-2 gap-2 text-xs text-zinc-400">
+                <span class="flex items-center gap-1.5"><span class="text-[#E5252A]">✔</span> Еден одговорен шеф</span>
+                <span class="flex items-center gap-1.5"><span class="text-[#E5252A]">✔</span> Фиксен писмен рок</span>
+                <span class="flex items-center gap-1.5"><span class="text-[#E5252A]">✔</span> Дневен фото извештај</span>
+                <span class="flex items-center gap-1.5"><span class="text-[#E5252A]">✔</span> Чист предаден објект</span>
+              </div>
+              <div class="pt-6">
+                <a href="#inquirySection" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#E5252A] text-white font-bold text-xs hover:bg-[#B91418] transition-colors">
+                  <span>Побарај увид за комплетна реновација</span> &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE INQUIRY & MEASUREMENT REQUEST (NO AUTOMATED PRICE AS REQUESTED) -->
+  <section id="inquirySection" class="py-20 bg-[#101216] border-y border-white/5 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Explanation of personal pricing -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase">
+            Директна Проценка
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Секој простор е уникатен. <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-[#E5252A]">Цената ја договараме лично</span> на бесплатен увид.
+          </h2>
+
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            Не користиме генерички автоматски калкулатори што даваат неточни цени. За да добиете <strong class="text-white">точна и фер понуда без скриени трошоци</strong>, нашиот тим излегува на терен, прави ласерско мерење на објектот и ви нуди најдобри решенија според вашиот буџет и желби.
+          </p>
+
+          <div class="space-y-3 pt-2">
+            <div class="flex items-center gap-3 text-sm text-zinc-300">
+              <span class="w-6 h-6 rounded-full bg-red-950 text-[#E5252A] flex items-center justify-center font-bold text-xs shrink-0">1</span>
+              <span>Изберете ги потребните работи подолу (плочки, гипс, винил...)</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-zinc-300">
+              <span class="w-6 h-6 rounded-full bg-red-950 text-[#E5252A] flex items-center justify-center font-bold text-xs shrink-0">2</span>
+              <span>Испратете преку формата или директно на WhatsApp со 1 клик</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-zinc-300">
+              <span class="w-6 h-6 rounded-full bg-red-950 text-[#E5252A] flex items-center justify-center font-bold text-xs shrink-0">3</span>
+              <span>Ве контактираме во рок од 2 часа за термин за бесплатен премер</span>
+            </div>
+          </div>
+
+          <!-- Direct Phone Call Strip -->
+          <div class="p-4 rounded-xl bg-[#16181E] border border-white/10 flex items-center justify-between">
+            <div>
+              <div class="text-xs text-zinc-400">Имате итно прашање?</div>
+              <div class="text-sm font-bold text-white">Јавете ни се директно:</div>
+            </div>
+            <a href="tel:+38970000000" class="px-4 py-2 rounded-lg bg-[#E5252A] text-white font-mono font-bold text-xs hover:bg-[#B91418] transition-colors">
+              +389 70 000 000
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Interactive Scope Configurator & Lead Form -->
+        <div class="lg:col-span-7">
+          <div class="rounded-2xl glass-panel p-6 sm:p-8 border border-white/15 shadow-2xl relative">
+            
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+              <h3 class="font-bold text-lg text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded bg-[#E5252A]"></span>
+                Барање за бесплатен увид и понуда
+              </h3>
+              <span class="text-xs text-zinc-400 font-mono">100% БЕСПЛАТНО</span>
+            </div>
+
+            <!-- Success notification banner (hidden by default) -->
+            <div id="inquirySuccessBanner" class="hidden mb-6 p-4 rounded-xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-sm">
+              ✔ Вашето барање е успешно испратено! Нашиот тим ќе ве контактира наскоро.
+            </div>
+
+            <form id="inquiryForm" class="space-y-6">
+              
+              <!-- STEP 1: Select Needed Services (Including Vinyl!) -->
+              <div>
+                <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                  Чекор 1: Што сѐ треба да се работи? (изберете повеќе)
+                </label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                  
+                  <label class="p-3 rounded-lg bg-[#181B22] border border-white/5 hover:border-[#E5252A] cursor-pointer transition-all flex items-center gap-2 text-xs">
+                    <input type="checkbox" value="Керамички плочки" class="inquiry-service accent-[#E5252A] w-4 h-4">
+                    <span class="text-zinc-200">Плочки (Бања/Кујна)</span>
+                  </label>
+
+                  <label class="p-3 rounded-lg bg-[#181B22] border border-white/5 hover:border-[#E5252A] cursor-pointer transition-all flex items-center gap-2 text-xs">
+                    <input type="checkbox" value="Гипс картон и LED тавани" class="inquiry-service accent-[#E5252A] w-4 h-4">
+                    <span class="text-zinc-200">Гипс картон & LED</span>
+                  </label>
+
+                  <label class="p-3 rounded-lg bg-[#181B22] border border-white/5 hover:border-[#E5252A] cursor-pointer transition-all flex items-center gap-2 text-xs border-[#E5252A]/40 bg-red-950/20">
+                    <input type="checkbox" value="Винил подови (LVT/SPC)" checked class="inquiry-service accent-[#E5252A] w-4 h-4">
+                    <span class="text-white font-semibold">Винил подови (LVT)</span>
+                  </label>
+
+                  <label class="p-3 rounded-lg bg-[#181B22] border border-white/5 hover:border-[#E5252A] cursor-pointer transition-all flex items-center gap-2 text-xs">
+                    <input type="checkbox" value="Дрвени подови / Паркет" class="inquiry-service accent-[#E5252A] w-4 h-4">
+                    <span class="text-zinc-200">Паркет / Ламинат</span>
+                  </label>
+
+                  <label class="p-3 rounded-lg bg-[#181B22] border border-white/5 hover:border-[#E5252A] cursor-pointer transition-all flex items-center gap-2 text-xs">
+                    <input type="checkbox" value="Хидроизолација & Инсталации" class="inquiry-service accent-[#E5252A] w-4 h-4">
+                    <span class="text-zinc-200">Хидроизолација</span>
+                  </label>
+
+                  <label class="p-3 rounded-lg bg-[#181B22] border border-white/5 hover:border-[#E5252A] cursor-pointer transition-all flex items-center gap-2 text-xs">
+                    <input type="checkbox" value="Комплетна реновација клуч на рака" class="inquiry-service accent-[#E5252A] w-4 h-4">
+                    <span class="text-zinc-200">Комплетна реновација</span>
+                  </label>
+
+                </div>
+              </div>
+
+              <!-- STEP 2: Space Type & Approx Sqm -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                    Чекор 2: Тип на објект
+                  </label>
+                  <div class="flex gap-2">
+                    <label class="flex-1 text-center py-2 px-3 rounded-lg bg-[#181B22] border border-white/5 text-xs text-zinc-300 hover:border-[#E5252A] cursor-pointer">
+                      <input type="radio" name="spaceType" value="Стан" checked class="hidden peer">
+                      <span class="peer-checked:text-[#E5252A] peer-checked:font-bold">Стан</span>
+                    </label>
+                    <label class="flex-1 text-center py-2 px-3 rounded-lg bg-[#181B22] border border-white/5 text-xs text-zinc-300 hover:border-[#E5252A] cursor-pointer">
+                      <input type="radio" name="spaceType" value="Куќа" class="hidden peer">
+                      <span class="peer-checked:text-[#E5252A] peer-checked:font-bold">Куќа</span>
+                    </label>
+                    <label class="flex-1 text-center py-2 px-3 rounded-lg bg-[#181B22] border border-white/5 text-xs text-zinc-300 hover:border-[#E5252A] cursor-pointer">
+                      <input type="radio" name="spaceType" value="Деловен простор" class="hidden peer">
+                      <span class="peer-checked:text-[#E5252A] peer-checked:font-bold">Деловен</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                    Приближна површина (m²)
+                  </label>
+                  <input type="text" id="inquirySqm" placeholder="Пр: 45 m² или 1 бања" class="w-full bg-[#181B22] border border-white/10 rounded-lg px-3.5 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A]">
+                </div>
+              </div>
+
+              <!-- STEP 3: Client Contact -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-xs text-zinc-400 mb-1">Ваше име</label>
+                  <input type="text" id="inquiryName" required placeholder="Име и презиме" class="w-full bg-[#181B22] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A]">
+                </div>
+                <div>
+                  <label class="block text-xs text-zinc-400 mb-1">Телефонски број</label>
+                  <input type="tel" id="inquiryPhone" required placeholder="07X XXX XXX" class="w-full bg-[#181B22] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A]">
+                </div>
+                <div>
+                  <label class="block text-xs text-zinc-400 mb-1">Град / Населба</label>
+                  <input type="text" id="inquiryCity" placeholder="Пр: Скопје, Центар" class="w-full bg-[#181B22] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A]">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs text-zinc-400 mb-1">Забелешка / Специфични барања (опционално)</label>
+                <textarea id="inquiryNotes" rows="2" placeholder="На пр: сакаме водоотпорен винил во ходник и кујна, а во бањата големи плочки 120x60..." class="w-full bg-[#181B22] border border-white/10 rounded-lg px-3.5 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A]"></textarea>
+              </div>
+
+              <!-- ACTION BUTTONS: Form Submit & Direct WhatsApp 1-Click -->
+              <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                <button type="button" id="whatsappInquiryBtn" class="flex-1 py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.54 1.861.859 2.796.859 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.768-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+                  <span>Испрати директно на WhatsApp</span>
+                </button>
+
+                <button type="submit" class="flex-1 py-3.5 px-4 rounded-xl bg-[#E5252A] hover:bg-[#B91418] text-white font-bold text-sm transition-all glow-red-sm flex items-center justify-center gap-2">
+                  <span>Испрати барање преку сајтот</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+
+              <div class="text-[11px] text-zinc-500 text-center">
+                * Вашите податоци се безбедни и се користат исклучиво за закажување на терминот за увид.
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FILTERABLE PROJECT PHOTO GALLERY WITH LIGHTBOX -->
+  <section id="gallery" class="py-24 bg-[#0B0C0E] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase mb-3">
+          Портфолио
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Галерија на изведени објекти
+        </h2>
+        <p class="text-zinc-400 mt-3 text-sm sm:text-base">
+          Секоја слика е вистински доказ за прецизноста на ANTHRA. Кликнете на било која слика за зголемен приказ и детали за изведбата.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-2 mb-10">
+        <button data-filter="all" class="gallery-filter-btn px-4 py-2 rounded-lg bg-[#E5252A] text-white text-xs sm:text-sm font-semibold transition-all">
+          Сите Проекти
+        </button>
+        <button data-filter="tiles" class="gallery-filter-btn px-4 py-2 rounded-lg bg-[#14161A] text-zinc-400 border border-white/10 hover:text-white text-xs sm:text-sm font-semibold transition-all">
+          Плочки & Бањи
+        </button>
+        <button data-filter="gypsum" class="gallery-filter-btn px-4 py-2 rounded-lg bg-[#14161A] text-zinc-400 border border-white/10 hover:text-white text-xs sm:text-sm font-semibold transition-all">
+          Гипс & LED Тавани
+        </button>
+        <button data-filter="vinyl" class="gallery-filter-btn px-4 py-2 rounded-lg bg-[#14161A] text-zinc-400 border border-white/10 hover:text-white text-xs sm:text-sm font-semibold transition-all">
+          Винил Подови (LVT)
+        </button>
+        <button data-filter="flooring" class="gallery-filter-btn px-4 py-2 rounded-lg bg-[#14161A] text-zinc-400 border border-white/10 hover:text-white text-xs sm:text-sm font-semibold transition-all">
+          Дрвени Подови & Паркет
+        </button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryContainer">
+        
+        <!-- Item 1: Bathroom Tiles -->
+        <div class="gallery-item group cursor-pointer" data-category="tiles" data-title="Мастер Бања со Голем Формат Мермерни Плочки" data-desc="Изведба на бања со плочки 120x60cm, нивелирање без запнувања, 45° герунг на сите рабови и вградена ниша со скриено LED светло.">
+          <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
+            <img src="assets/images/tiles-bathroom.jpg" alt="Бања плочки изведба" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Плочки & Бањи</span>
+              <h4 class="text-white font-bold text-base">Мастер Бања 120x60cm</h4>
+              <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2: Gypsum Ceiling & Wall -->
+        <div class="gallery-item group cursor-pointer" data-category="gypsum" data-title="Декоративен Каскаден LED Таван & ТВ Акустичен Ѕид" data-desc="Спуштен таван од гипс картон Knauf со профили за индиректно топло LED светло и елегантен ТВ блок со дрвени летвички.">
+          <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
+            <img src="assets/images/gypsum-ceiling.jpg" alt="Гипс картон таван" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Гипс Картон</span>
+              <h4 class="text-white font-bold text-base">Каскаден Таван со Скриен LED</h4>
+              <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Vinyl Flooring (LVT / SPC) -->
+        <div class="gallery-item group cursor-pointer" data-category="vinyl" data-title="Монтажа на Премиум Водоотпорен SPC Винил Под" data-desc="Поставување на најнова генерација водоотпорен SPC винил под со ласерски дистанцери и 100% стабилност на влага за цел стан.">
+          <div class="gallery-img-container rounded-2xl overflow-hidden border border-[#E5252A]/40 bg-[#14161A] h-72 relative">
+            <img src="assets/images/flooring-vinyl.jpg" alt="Винил под монтажа" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Винил Подови (LVT/SPC)</span>
+              <h4 class="text-white font-bold text-base">Водоотпорен SPC Клик Под</h4>
+              <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4: Parquet Herringbone -->
+        <div class="gallery-item group cursor-pointer" data-category="flooring" data-title="Природен Дабов Паркет - Рибина Коска (Herringbone)" data-desc="Прецизно поставување на масивен дабов паркет во шема на рибина коска со беспрекорен премин кон керамички под.">
+          <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
+            <img src="assets/images/flooring-parquet.jpg" alt="Паркет рибина коска" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Дрвени Подови</span>
+              <h4 class="text-white font-bold text-base">Дабов Паркет Herringbone</h4>
+              <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5: Complete Room Renovation -->
+        <div class="gallery-item group cursor-pointer" data-category="tiles gypsum flooring" data-title="Комплетно Реновиран Дневен Престој" data-desc="Комплетна реновација клуч на рака: нови подови, гипсарски тавани со индиректно светло, плочки во кујнскиот дел и молерски финиш.">
+          <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
+            <img src="assets/images/apartment-complete.jpg" alt="Комплетна реновација" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Комплетна Реновација</span>
+              <h4 class="text-white font-bold text-base">Дневен Боравок & Салон</h4>
+              <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6: Bathroom Before Renovation Showcase -->
+        <div class="gallery-item group cursor-pointer" data-category="tiles" data-title="Бања во сурова фаза на рушење & инсталации" data-desc="Истата бања пред почетокот на реновирањето: отстранети стари плочки, припрема на водоводна инсталација и ниша за туш пред финалната изведба со голем формат плочки.">
+          <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
+            <img src="assets/images/renovation-before.jpg" alt="Бања пред реновирање" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+              <span class="text-zinc-400 text-xs font-mono font-bold uppercase">Пред Реновирање</span>
+              <h4 class="text-white font-bold text-base">Сурова Состојба на Бањата</h4>
+              <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="relative max-w-4xl w-full bg-[#131519] border border-white/15 rounded-2xl overflow-hidden shadow-2xl">
+      <button id="closeLightbox" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-[#E5252A] transition-colors text-lg font-bold">
+        ✕
+      </button>
+      <div class="grid grid-cols-1 md:grid-cols-12">
+        <div class="md:col-span-8 bg-black flex items-center justify-center">
+          <img id="lightboxImg" src="" alt="Детален приказ" class="max-h-[70vh] w-auto object-contain">
+        </div>
+        <div class="md:col-span-4 p-6 flex flex-col justify-between">
+          <div class="space-y-3">
+            <span class="text-xs font-mono text-[#E5252A] font-bold">ANTHRA МАЈСТОРСКА ИЗВЕДБА</span>
+            <h3 id="lightboxTitle" class="text-xl font-bold text-white leading-snug">Наслов на проект</h3>
+            <p id="lightboxDesc" class="text-zinc-300 text-sm leading-relaxed">Детален опис за изведените работи.</p>
+          </div>
+          <div class="pt-6 border-t border-white/10 space-y-3">
+            <a href="#inquirySection" class="w-full py-2.5 px-4 rounded-lg bg-[#E5252A] text-white font-bold text-xs text-center block hover:bg-[#B91418] transition-colors">
+              Сакам ваква изведба &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY ANTHRA / TRUST SECTION -->
+  <section id="whyUs" class="py-20 bg-[#0E1014] border-t border-white/5 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-2xl glass-panel border border-white/5">
+          <div class="w-12 h-12 rounded-xl bg-red-950/60 border border-[#E5252A]/40 flex items-center justify-center text-xl text-[#E5252A] mb-4">
+            🎯
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Ласерска Геометрија</h4>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Сите прави агли, вертикали и хоризонтали се водат со професионални 360° зелени ласерски нивелири. Нема отстапувања.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl glass-panel border border-white/5">
+          <div class="w-12 h-12 rounded-xl bg-red-950/60 border border-[#E5252A]/40 flex items-center justify-center text-xl text-[#E5252A] mb-4">
+            📋
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Договор и Чист Рок</h4>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Почетокот и крајот на работите се фиксирани со договор. Нема влечење со месеци и нема „исчезнати мајстори“.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl glass-panel border border-white/5">
+          <div class="w-12 h-12 rounded-xl bg-red-950/60 border border-[#E5252A]/40 flex items-center justify-center text-xl text-[#E5252A] mb-4">
+            🧹
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Педантност и Ред</h4>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Објектот редовно се чисти од градежен прав, подовите се заштитуваат со дебел картон и филц за време на работа.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl glass-panel border border-white/5">
+          <div class="w-12 h-12 rounded-xl bg-red-950/60 border border-[#E5252A]/40 flex items-center justify-center text-xl text-[#E5252A] mb-4">
+            🛡️
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">100% Писмена Гаранција</h4>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Стоиме позади секој квадратен метар што ќе го изведеме. Секоја рекламација се решава експресно.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIRECT CONTACT & COMMUNICATION CHANNELS -->
+  <section id="contact" class="py-20 bg-carbon relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="rounded-3xl glass-panel border border-white/10 p-8 sm:p-12 overflow-hidden relative">
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#E5252A]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-4">
+            <span class="text-xs font-mono text-[#E5252A] font-bold uppercase tracking-wider">Директна Комуникација</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+              Подготвени сте да го уредите вашиот простор?
+            </h2>
+            <p class="text-zinc-300 text-sm leading-relaxed">
+              Контактирајте нѐ директно преку вашиот омилен канал. Одговараме брзо со сите потребни информации.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              
+              <!-- WhatsApp Card -->
+              <a href="https://wa.me/38970000000" target="_blank" class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30 hover:border-emerald-400 flex items-center gap-3.5 transition-all group">
+                <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.54 1.861.859 2.796.859 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.768-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+                </div>
+                <div>
+                  <div class="text-xs text-zinc-400">Пишете ни на</div>
+                  <div class="text-sm font-bold text-white group-hover:text-emerald-400">WhatsApp Чет</div>
+                </div>
+              </a>
+
+              <!-- Viber Card -->
+              <a href="viber://chat?number=%2B38970000000" class="p-4 rounded-xl bg-purple-950/40 border border-purple-500/30 hover:border-purple-400 flex items-center gap-3.5 transition-all group">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
+                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M19.5 3h-15C3.1 3 2 4.1 2 5.5v13C2 19.9 3.1 21 4.5 21H18l4 4V5.5C22 4.1 20.9 3 19.5 3zm-3.6 13.8c-.3.1-.7.2-1.1.2-3.8 0-6.8-3.1-6.8-6.8 0-.4.1-.7.2-1.1L9.6 8c-.2.4-.4.8-.4 1.3 0 4.5 3.6 8.1 8.1 8.1.5 0 .9-.1 1.3-.4l-2.7-2.2z"/></svg>
+                </div>
+                <div>
+                  <div class="text-xs text-zinc-400">Пишете ни на</div>
+                  <div class="text-sm font-bold text-white group-hover:text-purple-400">Viber Порака</div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-[#171920] border border-white/10 rounded-2xl p-6 space-y-4">
+            <h4 class="font-bold text-white text-base">Информации за контакт</h4>
+            
+            <div class="space-y-3 text-sm text-zinc-300">
+              <div class="flex items-center gap-3">
+                <span class="text-[#E5252A]">📞</span>
+                <div>
+                  <div class="text-xs text-zinc-400">Телефон за контакт:</div>
+                  <a href="tel:+38970000000" class="font-bold text-white hover:text-[#E5252A] font-mono">+389 70 000 000</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="text-[#E5252A]">✉️</span>
+                <div>
+                  <div class="text-xs text-zinc-400">Е-пошта за планови:</div>
+                  <a href="mailto:kontakt@anthra.mk" class="font-bold text-white hover:text-[#E5252A]">kontakt@anthra.mk</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="text-[#E5252A]">📍</span>
+                <div>
+                  <div class="text-xs text-zinc-400">Работно подрачје:</div>
+                  <span class="font-bold text-white">Скопје и околина (за поголеми објекти цела МК)</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="text-[#E5252A]">⏰</span>
+                <div>
+                  <div class="text-xs text-zinc-400">Работно време за увиди:</div>
+                  <span class="font-bold text-white">Пон - Саб: 08:00 - 18:00</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#07080A] border-t border-white/10 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/5">
+        
+        <div class="flex items-center gap-3">
+          <img src="assets/images/logo.png" alt="ANTHRA Лого" class="h-10 w-auto object-contain">
+        </div>
+
+        <div class="text-xs text-zinc-400 text-center md:text-right">
+          <div class="font-bold text-white text-sm">ANTHRA Градежни Услуги & Реновации</div>
+          <div>Твој простор. Наша експертиза.</div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 gap-4">
+        <div>&copy; 2026 ANTHRA. Сите права се задржани.</div>
+        <div class="flex gap-6">
+          <a href="#services" class="hover:text-zinc-300">Плочки</a>
+          <a href="#services" class="hover:text-zinc-300">Гипс Картон</a>
+          <a href="#services" class="hover:text-[#E5252A] font-semibold">Винил Подови (LVT)</a>
+          <a href="#contact" class="hover:text-zinc-300">Контакт</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING QUICK CONTACT BAR FOR MOBILE & DESKTOP (STICKY BOTTOM) -->
+  <div class="fixed bottom-3 left-1/2 transform -translate-x-1/2 z-40 w-[95%] max-w-md bg-[#131519]/90 backdrop-blur-xl border border-white/15 rounded-full p-2 shadow-2xl flex items-center justify-between gap-2">
+    <a href="https://wa.me/38970000000" target="_blank" class="flex-1 py-2 px-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors">
+      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.54 1.861.859 2.796.859 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.768-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+
+    <a href="tel:+38970000000" class="flex-1 py-2 px-3 rounded-full bg-[#E5252A] hover:bg-[#B91418] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors glow-red-sm">
+      <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
+      <span>Повикај</span>
+    </a>
+
+    <a href="#inquirySection" class="py-2 px-3.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold flex items-center justify-center transition-colors">
+      <span>Увид</span>
+    </a>
+  </div>
+
+  <!-- INLINE BULLETPROOF CURSOR STYLES (WORKS WITH ZERO EXTERNAL DEPENDENCY) -->
+  <style>
+    #cursorGlowRing {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      border: 2px solid #E5252A;
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.4) 0%, rgba(229, 37, 42, 0.1) 60%, transparent 80%);
+      box-shadow: 0 0 24px rgba(229, 37, 42, 0.85), inset 0 0 10px rgba(229, 37, 42, 0.4);
+      transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
+      transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), height 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, opacity 0.2s ease;
+      opacity: 0;
+      will-change: transform;
+    }
+    #cursorGlowDot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      background-color: #E5252A;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 0 12px #FF2E34;
+      transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
+      opacity: 0;
+      will-change: transform;
+    }
+    body.cursor-hover #cursorGlowRing {
+      width: 72px;
+      height: 72px;
+      border-color: #FF4D52;
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.55) 0%, rgba(229, 37, 42, 0.18) 60%, transparent 80%);
+      box-shadow: 0 0 35px rgba(229, 37, 42, 1), inset 0 0 15px rgba(229, 37, 42, 0.6);
+    }
+    body.cursor-hover #cursorGlowDot {
+      width: 12px;
+      height: 12px;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 16px #FF2E34;
+    }
+    #cursorAmbientSpotlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99990;
+      mix-blend-mode: screen;
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.16) 0%, rgba(229, 37, 42, 0.04) 40%, transparent 70%);
+      transform: translate3d(-600px, -600px, 0) translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      will-change: transform;
+    }
+  </style>
+
+  <!-- JavaScript -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- INLINE FAIL-SAFE CURSOR CONTROLLER (GUARANTEED FOR THINKPAD / CHROME) -->
+  <script>
+    (function() {
+      function startCursor() {
+        var ring = document.getElementById('cursorGlowRing');
+        var dot = document.getElementById('cursorGlowDot');
+        var spot = document.getElementById('cursorAmbientSpotlight');
+        if (!ring || !dot || !spot) return;
+
+        var mouseX = -500, mouseY = -500;
+        var ringX = -500, ringY = -500;
+        var spotX = -500, spotY = -500;
+        var isVisible = false;
+
+        window.addEventListener('mousemove', function(e) {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+
+          if (!isVisible) {
+            isVisible = true;
+            ringX = mouseX;
+            ringY = mouseY;
+            spotX = mouseX;
+            spotY = mouseY;
+            ring.style.opacity = '1';
+            dot.style.opacity = '1';
+            spot.style.opacity = '1';
+          }
+
+          dot.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0) translate(-50%, -50%)';
+        }, { passive: true });
+
+        document.addEventListener('mouseleave', function() {
+          isVisible = false;
+          ring.style.opacity = '0';
+          dot.style.opacity = '0';
+          spot.style.opacity = '0';
+          document.body.classList.remove('cursor-hover');
+        });
+
+        function render() {
+          if (isVisible) {
+            ringX += (mouseX - ringX) * 0.22;
+            ringY += (mouseY - ringY) * 0.22;
+            ring.style.transform = 'translate3d(' + ringX + 'px, ' + ringY + 'px, 0) translate(-50%, -50%)';
+
+            spotX += (mouseX - spotX) * 0.09;
+            spotY += (mouseY - spotY) * 0.09;
+            spot.style.transform = 'translate3d(' + spotX + 'px, ' + spotY + 'px, 0) translate(-50%, -50%)';
+          }
+          requestAnimationFrame(render);
+        }
+        requestAnimationFrame(render);
+
+        document.addEventListener('mouseover', function(e) {
+          var el = e.target.closest('a, button, input, label, select, textarea, .gallery-item, .stage-btn, [role="button"], #baWrapper');
+          if (el) {
+            document.body.classList.add('cursor-hover');
+          } else {
+            document.body.classList.remove('cursor-hover');
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startCursor);
+      } else {
+        startCursor();
+      }
+    })();
+  </script>
+</body>
+</html>
