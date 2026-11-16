@@ -107,56 +107,36 @@ input[type="range"]::-webkit-slider-thumb {
   transform: scale(1.06);
 }
 
-/* Interactive Mouse Cursor Glow & Spotlight Effect */
+/* Interactive Mouse Cursor Glow & Spotlight Effect: Pure Soft Red Glow (No Border) */
 .cursor-glow-ring {
   position: fixed;
   top: 0;
   left: 0;
-  width: 44px;
-  height: 44px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
-  border: 2px solid #E5252A;
-  background: radial-gradient(circle, rgba(229, 37, 42, 0.35) 0%, rgba(229, 37, 42, 0.08) 55%, transparent 75%);
-  box-shadow: 0 0 22px rgba(229, 37, 42, 0.8), inset 0 0 10px rgba(229, 37, 42, 0.35);
-  transform: translate3d(-200px, -200px, 0) translate(-50%, -50%);
-  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, background 0.2s ease, opacity 0.25s ease;
+  border: none;
+  background: radial-gradient(circle, rgba(229, 37, 42, 0.6) 0%, rgba(229, 37, 42, 0.28) 35%, rgba(229, 37, 42, 0.08) 65%, transparent 75%);
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 0.2s ease;
   opacity: 0;
   will-change: transform;
 }
 
 .cursor-glow-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  background-color: #E5252A;
-  border: 1.5px solid #FFFFFF;
-  box-shadow: 0 0 12px #E5252A;
-  transform: translate3d(-200px, -200px, 0) translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.2s ease, transform 0.15s ease;
-  will-change: transform;
+  display: none !important;
 }
 
 /* Hover state on interactive elements */
 body.cursor-hover .cursor-glow-ring {
-  width: 72px;
-  height: 72px;
-  border-color: #FF383E;
-  background: radial-gradient(circle, rgba(229, 37, 42, 0.5) 0%, rgba(229, 37, 42, 0.15) 60%, transparent 80%);
-  box-shadow: 0 0 35px rgba(229, 37, 42, 1), inset 0 0 15px rgba(229, 37, 42, 0.5);
-}
-
-body.cursor-hover .cursor-glow-dot {
-  transform: translate3d(-200px, -200px, 0) translate(-50%, -50%) scale(1.4);
-  background-color: #FFFFFF;
-  box-shadow: 0 0 14px #FF383E;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(229, 37, 42, 0.75) 0%, rgba(229, 37, 42, 0.35) 40%, rgba(229, 37, 42, 0.1) 65%, transparent 80%);
+  filter: blur(8px);
 }
 
 /* Ambient soft red flashlight on top of dark cards */

@@ -1062,53 +1062,34 @@
     </a>
   </div>
 
-  <!-- INLINE BULLETPROOF CURSOR STYLES (WORKS WITH ZERO EXTERNAL DEPENDENCY) -->
+  <!-- INLINE BULLETPROOF CURSOR STYLES: PURE SOFT RED GLOW (NO BORDER, NO CIRCLE) -->
   <style>
     #cursorGlowRing {
       position: fixed;
       top: 0;
       left: 0;
-      width: 44px;
-      height: 44px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       pointer-events: none;
       z-index: 99998;
-      border: 2px solid #E5252A;
-      background: radial-gradient(circle, rgba(229, 37, 42, 0.4) 0%, rgba(229, 37, 42, 0.1) 60%, transparent 80%);
-      box-shadow: 0 0 24px rgba(229, 37, 42, 0.85), inset 0 0 10px rgba(229, 37, 42, 0.4);
+      border: none;
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.6) 0%, rgba(229, 37, 42, 0.28) 35%, rgba(229, 37, 42, 0.08) 65%, transparent 75%);
+      filter: blur(6px);
+      mix-blend-mode: screen;
       transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
-      transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), height 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, opacity 0.2s ease;
+      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 0.2s ease;
       opacity: 0;
       will-change: transform;
     }
     #cursorGlowDot {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
-      background-color: #E5252A;
-      border: 1.5px solid #FFFFFF;
-      box-shadow: 0 0 12px #FF2E34;
-      transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
-      opacity: 0;
-      will-change: transform;
+      display: none !important;
     }
     body.cursor-hover #cursorGlowRing {
-      width: 72px;
-      height: 72px;
-      border-color: #FF4D52;
-      background: radial-gradient(circle, rgba(229, 37, 42, 0.55) 0%, rgba(229, 37, 42, 0.18) 60%, transparent 80%);
-      box-shadow: 0 0 35px rgba(229, 37, 42, 1), inset 0 0 15px rgba(229, 37, 42, 0.6);
-    }
-    body.cursor-hover #cursorGlowDot {
-      width: 12px;
-      height: 12px;
-      background-color: #FFFFFF;
-      box-shadow: 0 0 16px #FF2E34;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.75) 0%, rgba(229, 37, 42, 0.35) 40%, rgba(229, 37, 42, 0.1) 65%, transparent 80%);
+      filter: blur(8px);
     }
     #cursorAmbientSpotlight {
       position: fixed;
