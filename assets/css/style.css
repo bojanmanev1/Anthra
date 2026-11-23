@@ -112,17 +112,17 @@ input[type="range"]::-webkit-slider-thumb {
   position: fixed;
   top: 0;
   left: 0;
-  width: 46px;
-  height: 46px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
   border: none;
-  background: radial-gradient(circle, rgba(229, 37, 42, 0.55) 0%, rgba(229, 37, 42, 0.18) 45%, transparent 70%);
-  filter: blur(4px);
+  background: radial-gradient(circle, rgba(229, 37, 42, 0.6) 0%, rgba(229, 37, 42, 0.22) 40%, rgba(229, 37, 42, 0.05) 65%, transparent 75%);
+  filter: blur(5px);
   mix-blend-mode: screen;
   transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
-  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 0.2s ease;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
   opacity: 0;
   will-change: transform;
 }
@@ -133,10 +133,10 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Hover state on interactive elements */
 body.cursor-hover .cursor-glow-ring {
-  width: 72px;
-  height: 72px;
-  background: radial-gradient(circle, rgba(229, 37, 42, 0.65) 0%, rgba(229, 37, 42, 0.22) 45%, transparent 75%);
-  filter: blur(5px);
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, rgba(229, 37, 42, 0.7) 0%, rgba(229, 37, 42, 0.28) 45%, rgba(229, 37, 42, 0.08) 65%, transparent 80%);
+  filter: blur(6px);
 }
 
 /* Ambient soft red flashlight on top of dark cards */
@@ -144,21 +144,21 @@ body.cursor-hover .cursor-glow-ring {
   position: fixed;
   top: 0;
   left: 0;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99990;
   mix-blend-mode: screen;
-  background: radial-gradient(circle, rgba(229, 37, 42, 0.12) 0%, rgba(229, 37, 42, 0.03) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(229, 37, 42, 0.16) 0%, rgba(229, 37, 42, 0.04) 45%, transparent 70%);
   transform: translate3d(-600px, -600px, 0) translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.3s ease;
   will-change: transform;
 }
 
-/* COMPLETELY REMOVE CURSOR GLOW ON MOBILE / TABLET / TOUCH */
-@media (max-width: 1024px), (pointer: coarse), (hover: none) {
+/* Hide only on mobile phone screens */
+@media (max-width: 768px) {
   .cursor-glow-ring,
   #cursorGlowRing,
   .cursor-ambient-spotlight,

@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cursorDot = document.getElementById('cursorGlowDot');
   const cursorSpotlight = document.getElementById('cursorAmbientSpotlight');
 
-  if (cursorRing && cursorSpotlight && window.innerWidth > 1024 && !window.matchMedia('(pointer: coarse)').matches) {
+  if (cursorRing && cursorSpotlight && window.innerWidth > 768) {
     let mouseX = -500, mouseY = -500;
     let ringX = -500, ringY = -500;
     let spotX = -500, spotY = -500;
@@ -265,12 +265,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('touchstart', hideCursor, { passive: true });
+    window.addEventListener('touchmove', hideCursor, { passive: true });
     window.addEventListener('touchend', hideCursor, { passive: true });
-    window.addEventListener('touchcancel', hideCursor, { passive: true });
     document.addEventListener('mouseleave', hideCursor);
 
-    window.addEventListener('mousemove', (e) => {
-      if (window.innerWidth <= 1024) {
+    const handlePointer = (e) => {
+      if (e.pointerType === 'touch') {
+        hideCursor();
+        return;
+      }
+
+      if (window.innerWidth <= 768) {
         hideCursor();
         return;
       }
@@ -287,7 +292,13 @@ document.addEventListener('DOMContentLoaded', () => {
         cursorRing.style.opacity = '1';
         cursorSpotlight.style.opacity = '1';
       }
-    });
+    };
+
+    if (window.PointerEvent) {
+      window.addEventListener('pointermove', handlePointer, { passive: true });
+    } else {
+      window.addEventListener('mousemove', handlePointer, { passive: true });
+    }
 
     // Smooth animation loop for the glowing ring and ambient spotlight
     function animateCursor() {

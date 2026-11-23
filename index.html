@@ -1068,17 +1068,17 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 46px;
-      height: 46px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       pointer-events: none;
       z-index: 99998;
       border: none;
-      background: radial-gradient(circle, rgba(229, 37, 42, 0.55) 0%, rgba(229, 37, 42, 0.18) 45%, transparent 70%);
-      filter: blur(4px);
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.65) 0%, rgba(229, 37, 42, 0.22) 40%, rgba(229, 37, 42, 0.05) 65%, transparent 75%);
+      filter: blur(5px);
       mix-blend-mode: screen;
       transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
-      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 0.2s ease;
+      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
       opacity: 0;
       will-change: transform;
     }
@@ -1086,30 +1086,30 @@
       display: none !important;
     }
     body.cursor-hover #cursorGlowRing {
-      width: 72px;
-      height: 72px;
-      background: radial-gradient(circle, rgba(229, 37, 42, 0.65) 0%, rgba(229, 37, 42, 0.22) 45%, transparent 75%);
-      filter: blur(5px);
+      width: 90px;
+      height: 90px;
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.7) 0%, rgba(229, 37, 42, 0.28) 45%, rgba(229, 37, 42, 0.08) 65%, transparent 80%);
+      filter: blur(6px);
     }
     #cursorAmbientSpotlight {
       position: fixed;
       top: 0;
       left: 0;
-      width: 200px;
-      height: 200px;
+      width: 250px;
+      height: 250px;
       border-radius: 50%;
       pointer-events: none;
       z-index: 99990;
       mix-blend-mode: screen;
-      background: radial-gradient(circle, rgba(229, 37, 42, 0.12) 0%, rgba(229, 37, 42, 0.03) 45%, transparent 70%);
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.16) 0%, rgba(229, 37, 42, 0.04) 45%, transparent 70%);
       transform: translate3d(-600px, -600px, 0) translate(-50%, -50%);
       opacity: 0;
       transition: opacity 0.3s ease;
       will-change: transform;
     }
 
-    /* 100% REMOVE RED GLOW ON MOBILE / TABLET / TOUCH DEVICES */
-    @media (max-width: 1024px), (pointer: coarse), (hover: none) {
+    /* Hide only on mobile phones (under 768px width) */
+    @media (max-width: 768px) {
       #cursorGlowRing,
       #cursorGlowDot,
       #cursorAmbientSpotlight,
@@ -1127,14 +1127,11 @@
   <!-- JavaScript -->
   <script src="assets/js/main.js"></script>
 
-  <!-- INLINE FAIL-SAFE CURSOR CONTROLLER (DESKTOP ONLY - DISABLED ON TOUCH/MOBILE) -->
+  <!-- INLINE FAIL-SAFE CURSOR CONTROLLER (GUARANTEED FOR THINKPAD / CHROME & MOBILE PROTECTED) -->
   <script>
     (function() {
       function startCursor() {
-        // Do not activate on screens <= 1024px or touch-only screens
-        if (window.innerWidth <= 1024 || window.matchMedia('(pointer: coarse)').matches) {
-          return;
-        }
+        if (window.innerWidth <= 768) return;
 
         var ring = document.getElementById('cursorGlowRing');
         var dot = document.getElementById('cursorGlowDot');
@@ -1154,14 +1151,20 @@
           document.body.classList.remove('cursor-hover');
         }
 
-        // Instantly dismiss on any touch event or mouse leave
+        // Instantly hide whenever finger touches screen (mobile or touchscreen laptops)
         window.addEventListener('touchstart', hideCursor, { passive: true });
+        window.addEventListener('touchmove', hideCursor, { passive: true });
         window.addEventListener('touchend', hideCursor, { passive: true });
-        window.addEventListener('touchcancel', hideCursor, { passive: true });
         document.addEventListener('mouseleave', hideCursor);
 
-        window.addEventListener('mousemove', function(e) {
-          if (window.innerWidth <= 1024) {
+        function handlePointer(e) {
+          // If event was triggered by touch contact, do not show cursor glow
+          if (e.pointerType === 'touch') {
+            hideCursor();
+            return;
+          }
+
+          if (window.innerWidth <= 768) {
             hideCursor();
             return;
           }
@@ -1178,7 +1181,13 @@
             ring.style.opacity = '1';
             spot.style.opacity = '1';
           }
-        }, { passive: true });
+        }
+
+        if (window.PointerEvent) {
+          window.addEventListener('pointermove', handlePointer, { passive: true });
+        } else {
+          window.addEventListener('mousemove', handlePointer, { passive: true });
+        }
 
         function render() {
           if (isVisible) {
