@@ -245,18 +245,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Smooth Interactive Mouse Cursor Glow & Spotlight Effect
+  // 6. Smooth Interactive Mouse Cursor Glow & Spotlight Effect (Desktop only)
   const cursorRing = document.getElementById('cursorGlowRing');
   const cursorDot = document.getElementById('cursorGlowDot');
   const cursorSpotlight = document.getElementById('cursorAmbientSpotlight');
 
-  if (cursorRing && cursorDot && cursorSpotlight) {
+  if (cursorRing && cursorSpotlight && window.innerWidth > 1024 && !window.matchMedia('(pointer: coarse)').matches) {
     let mouseX = -500, mouseY = -500;
     let ringX = -500, ringY = -500;
     let spotX = -500, spotY = -500;
     let isVisible = false;
 
+    const hideCursor = () => {
+      isVisible = false;
+      cursorRing.style.opacity = '0';
+      if (cursorDot) cursorDot.style.opacity = '0';
+      cursorSpotlight.style.opacity = '0';
+      document.body.classList.remove('cursor-hover');
+    };
+
+    window.addEventListener('touchstart', hideCursor, { passive: true });
+    window.addEventListener('touchend', hideCursor, { passive: true });
+    window.addEventListener('touchcancel', hideCursor, { passive: true });
+    document.addEventListener('mouseleave', hideCursor);
+
     window.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 1024) {
+        hideCursor();
+        return;
+      }
+
       mouseX = e.clientX;
       mouseY = e.clientY;
 
@@ -267,40 +285,21 @@ document.addEventListener('DOMContentLoaded', () => {
         spotX = mouseX;
         spotY = mouseY;
         cursorRing.style.opacity = '1';
-        cursorDot.style.opacity = '1';
         cursorSpotlight.style.opacity = '1';
       }
-
-      // Dot follows mouse position immediately
-      cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
     });
-
-    document.addEventListener('mouseleave', () => {
-      isVisible = false;
-      cursorRing.style.opacity = '0';
-      cursorDot.style.opacity = '0';
-      cursorSpotlight.style.opacity = '0';
-      document.body.classList.remove('cursor-hover');
-    });
-
-    window.addEventListener('touchstart', () => {
-      isVisible = false;
-      cursorRing.style.opacity = '0';
-      cursorDot.style.opacity = '0';
-      cursorSpotlight.style.opacity = '0';
-    }, { passive: true });
 
     // Smooth animation loop for the glowing ring and ambient spotlight
     function animateCursor() {
       if (isVisible) {
         // Fluid interpolation for the glowing ring
-        ringX += (mouseX - ringX) * 0.2;
-        ringY += (mouseY - ringY) * 0.2;
+        ringX += (mouseX - ringX) * 0.22;
+        ringY += (mouseY - ringY) * 0.22;
         cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
 
         // Ambient spotlight follows with smooth gentle trailing
-        spotX += (mouseX - spotX) * 0.08;
-        spotY += (mouseY - spotY) * 0.08;
+        spotX += (mouseX - spotX) * 0.09;
+        spotY += (mouseY - spotY) * 0.09;
         cursorSpotlight.style.transform = `translate3d(${spotX}px, ${spotY}px, 0) translate(-50%, -50%)`;
       }
       requestAnimationFrame(animateCursor);
@@ -309,6 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event delegation: expands glowing circle when hovering any clickable item
     document.addEventListener('mouseover', (e) => {
+      if (!isVisible) return;
       const interactive = e.target.closest('a, button, input, label, select, textarea, .gallery-item, .stage-btn, [role="button"], #baWrapper');
       if (interactive) {
         document.body.classList.add('cursor-hover');

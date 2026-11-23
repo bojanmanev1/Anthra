@@ -1062,20 +1062,20 @@
     </a>
   </div>
 
-  <!-- INLINE BULLETPROOF CURSOR STYLES: PURE SOFT RED GLOW (NO BORDER, NO CIRCLE) -->
+  <!-- INLINE BULLETPROOF CURSOR STYLES: PURE SOFT RED GLOW (DESKTOP ONLY) -->
   <style>
     #cursorGlowRing {
       position: fixed;
       top: 0;
       left: 0;
-      width: 90px;
-      height: 90px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       pointer-events: none;
       z-index: 99998;
       border: none;
-      background: radial-gradient(circle, rgba(229, 37, 42, 0.6) 0%, rgba(229, 37, 42, 0.28) 35%, rgba(229, 37, 42, 0.08) 65%, transparent 75%);
-      filter: blur(6px);
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.55) 0%, rgba(229, 37, 42, 0.18) 45%, transparent 70%);
+      filter: blur(4px);
       mix-blend-mode: screen;
       transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
       transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 0.2s ease;
@@ -1086,47 +1086,86 @@
       display: none !important;
     }
     body.cursor-hover #cursorGlowRing {
-      width: 140px;
-      height: 140px;
-      background: radial-gradient(circle, rgba(229, 37, 42, 0.75) 0%, rgba(229, 37, 42, 0.35) 40%, rgba(229, 37, 42, 0.1) 65%, transparent 80%);
-      filter: blur(8px);
+      width: 72px;
+      height: 72px;
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.65) 0%, rgba(229, 37, 42, 0.22) 45%, transparent 75%);
+      filter: blur(5px);
     }
     #cursorAmbientSpotlight {
       position: fixed;
       top: 0;
       left: 0;
-      width: 420px;
-      height: 420px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       pointer-events: none;
       z-index: 99990;
       mix-blend-mode: screen;
-      background: radial-gradient(circle, rgba(229, 37, 42, 0.16) 0%, rgba(229, 37, 42, 0.04) 40%, transparent 70%);
+      background: radial-gradient(circle, rgba(229, 37, 42, 0.12) 0%, rgba(229, 37, 42, 0.03) 45%, transparent 70%);
       transform: translate3d(-600px, -600px, 0) translate(-50%, -50%);
       opacity: 0;
       transition: opacity 0.3s ease;
       will-change: transform;
+    }
+
+    /* 100% REMOVE RED GLOW ON MOBILE / TABLET / TOUCH DEVICES */
+    @media (max-width: 1024px), (pointer: coarse), (hover: none) {
+      #cursorGlowRing,
+      #cursorGlowDot,
+      #cursorAmbientSpotlight,
+      .cursor-glow-ring,
+      .cursor-glow-dot,
+      .cursor-ambient-spotlight {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
     }
   </style>
 
   <!-- JavaScript -->
   <script src="assets/js/main.js"></script>
 
-  <!-- INLINE FAIL-SAFE CURSOR CONTROLLER (GUARANTEED FOR THINKPAD / CHROME) -->
+  <!-- INLINE FAIL-SAFE CURSOR CONTROLLER (DESKTOP ONLY - DISABLED ON TOUCH/MOBILE) -->
   <script>
     (function() {
       function startCursor() {
+        // Do not activate on screens <= 1024px or touch-only screens
+        if (window.innerWidth <= 1024 || window.matchMedia('(pointer: coarse)').matches) {
+          return;
+        }
+
         var ring = document.getElementById('cursorGlowRing');
         var dot = document.getElementById('cursorGlowDot');
         var spot = document.getElementById('cursorAmbientSpotlight');
-        if (!ring || !dot || !spot) return;
+        if (!ring || !spot) return;
 
         var mouseX = -500, mouseY = -500;
         var ringX = -500, ringY = -500;
         var spotX = -500, spotY = -500;
         var isVisible = false;
 
+        function hideCursor() {
+          isVisible = false;
+          ring.style.opacity = '0';
+          if (dot) dot.style.opacity = '0';
+          spot.style.opacity = '0';
+          document.body.classList.remove('cursor-hover');
+        }
+
+        // Instantly dismiss on any touch event or mouse leave
+        window.addEventListener('touchstart', hideCursor, { passive: true });
+        window.addEventListener('touchend', hideCursor, { passive: true });
+        window.addEventListener('touchcancel', hideCursor, { passive: true });
+        document.addEventListener('mouseleave', hideCursor);
+
         window.addEventListener('mousemove', function(e) {
+          if (window.innerWidth <= 1024) {
+            hideCursor();
+            return;
+          }
+
           mouseX = e.clientX;
           mouseY = e.clientY;
 
@@ -1137,20 +1176,9 @@
             spotX = mouseX;
             spotY = mouseY;
             ring.style.opacity = '1';
-            dot.style.opacity = '1';
             spot.style.opacity = '1';
           }
-
-          dot.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0) translate(-50%, -50%)';
         }, { passive: true });
-
-        document.addEventListener('mouseleave', function() {
-          isVisible = false;
-          ring.style.opacity = '0';
-          dot.style.opacity = '0';
-          spot.style.opacity = '0';
-          document.body.classList.remove('cursor-hover');
-        });
 
         function render() {
           if (isVisible) {
@@ -1167,6 +1195,7 @@
         requestAnimationFrame(render);
 
         document.addEventListener('mouseover', function(e) {
+          if (!isVisible) return;
           var el = e.target.closest('a, button, input, label, select, textarea, .gallery-item, .stage-btn, [role="button"], #baWrapper');
           if (el) {
             document.body.classList.add('cursor-hover');

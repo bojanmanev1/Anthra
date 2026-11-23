@@ -107,19 +107,19 @@ input[type="range"]::-webkit-slider-thumb {
   transform: scale(1.06);
 }
 
-/* Interactive Mouse Cursor Glow & Spotlight Effect: Pure Soft Red Glow (No Border) */
+/* Interactive Mouse Cursor Glow & Spotlight Effect: Pure Soft Red Glow (Desktop only) */
 .cursor-glow-ring {
   position: fixed;
   top: 0;
   left: 0;
-  width: 90px;
-  height: 90px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
   border: none;
-  background: radial-gradient(circle, rgba(229, 37, 42, 0.6) 0%, rgba(229, 37, 42, 0.28) 35%, rgba(229, 37, 42, 0.08) 65%, transparent 75%);
-  filter: blur(6px);
+  background: radial-gradient(circle, rgba(229, 37, 42, 0.55) 0%, rgba(229, 37, 42, 0.18) 45%, transparent 70%);
+  filter: blur(4px);
   mix-blend-mode: screen;
   transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
   transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 0.2s ease;
@@ -133,10 +133,10 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Hover state on interactive elements */
 body.cursor-hover .cursor-glow-ring {
-  width: 140px;
-  height: 140px;
-  background: radial-gradient(circle, rgba(229, 37, 42, 0.75) 0%, rgba(229, 37, 42, 0.35) 40%, rgba(229, 37, 42, 0.1) 65%, transparent 80%);
-  filter: blur(8px);
+  width: 72px;
+  height: 72px;
+  background: radial-gradient(circle, rgba(229, 37, 42, 0.65) 0%, rgba(229, 37, 42, 0.22) 45%, transparent 75%);
+  filter: blur(5px);
 }
 
 /* Ambient soft red flashlight on top of dark cards */
@@ -144,15 +144,30 @@ body.cursor-hover .cursor-glow-ring {
   position: fixed;
   top: 0;
   left: 0;
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99990;
   mix-blend-mode: screen;
-  background: radial-gradient(circle, rgba(229, 37, 42, 0.16) 0%, rgba(229, 37, 42, 0.04) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(229, 37, 42, 0.12) 0%, rgba(229, 37, 42, 0.03) 45%, transparent 70%);
   transform: translate3d(-600px, -600px, 0) translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.3s ease;
   will-change: transform;
+}
+
+/* COMPLETELY REMOVE CURSOR GLOW ON MOBILE / TABLET / TOUCH */
+@media (max-width: 1024px), (pointer: coarse), (hover: none) {
+  .cursor-glow-ring,
+  #cursorGlowRing,
+  .cursor-ambient-spotlight,
+  #cursorAmbientSpotlight,
+  .cursor-glow-dot,
+  #cursorGlowDot {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
