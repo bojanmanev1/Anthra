@@ -23,10 +23,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const baBeforeImgTag = document.getElementById('baBeforeImgTag');
   const baHandle = document.getElementById('baHandle');
   const baPercent = document.getElementById('baPercent');
+  const baAfterBadge = document.getElementById('baAfterBadge');
+  const baAfterDetail = document.getElementById('baAfterDetail');
+  const baBeforeBadge = document.getElementById('baBeforeBadge');
+  const baBeforeDetail = document.getElementById('baBeforeDetail');
 
   function syncBeforeImageSize() {
     if (baWrapper && baBeforeImgTag) {
       baBeforeImgTag.style.width = baWrapper.offsetWidth + 'px';
+    }
+  }
+
+  function updateSliderPosition(val) {
+    if (baBeforeImg) baBeforeImg.style.width = `${val}%`;
+    if (baHandle) baHandle.style.left = `${val}%`;
+    if (baPercent) baPercent.textContent = `${val}%`;
+
+    // Smoothly fade out badges when the slider covers them
+    if (baAfterBadge) {
+      baAfterBadge.style.opacity = val > 75 ? '0' : '1';
+    }
+    if (baAfterDetail) {
+      baAfterDetail.style.opacity = val > 70 ? '0' : '1';
+    }
+    if (baBeforeBadge) {
+      baBeforeBadge.style.opacity = val < 25 ? '0' : '1';
+    }
+    if (baBeforeDetail) {
+      baBeforeDetail.style.opacity = val < 30 ? '0' : '1';
     }
   }
 
@@ -35,12 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', syncBeforeImageSize);
 
     baRange.addEventListener('input', (e) => {
-      const val = e.target.value;
-      baBeforeImg.style.width = `${val}%`;
-      baHandle.style.left = `${val}%`;
-      if (baPercent) {
-        baPercent.textContent = `${val}%`;
-      }
+      updateSliderPosition(Number(e.target.value));
     });
   }
 

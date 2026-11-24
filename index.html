@@ -350,20 +350,20 @@
           
           <!-- AFTER Image (Finished Luxury Masterpiece) -->
           <img src="assets/images/tiles-bathroom.jpg" alt="После изведба на ANTHRA" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute top-3 sm:top-4 right-3 sm:right-4 z-10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-[#E5252A] text-white font-extrabold text-xs tracking-wider shadow-lg uppercase">
+          <div id="baAfterBadge" class="absolute top-3 sm:top-4 right-3 sm:right-4 z-0 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-[#E5252A] text-white font-extrabold text-xs tracking-wider shadow-lg uppercase transition-opacity duration-200 pointer-events-none">
             ПОТОА
           </div>
-          <div class="absolute bottom-4 right-4 z-10 px-3 py-1 bg-black/70 backdrop-blur-md rounded text-zinc-300 text-xs hidden md:block">
+          <div id="baAfterDetail" class="absolute bottom-4 right-4 z-0 px-3 py-1 bg-black/70 backdrop-blur-md rounded text-zinc-300 text-xs hidden md:block transition-opacity duration-200 pointer-events-none">
             Керамика 120x60 • Ниша со LED • 45° Герунг
           </div>
 
           <!-- BEFORE Image (Raw demolition state of the EXACT same bathroom) -->
-          <div id="baBeforeImg" class="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-[#E5252A]" style="width: 50%;">
+          <div id="baBeforeImg" class="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-[#E5252A] z-10" style="width: 50%;">
             <img id="baBeforeImgTag" src="assets/images/renovation-before.jpg" alt="Пред реновирање" class="absolute inset-y-0 left-0 h-full max-w-none object-cover">
-            <div class="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-black/80 text-zinc-200 font-extrabold text-xs tracking-wider border border-white/10 uppercase">
+            <div id="baBeforeBadge" class="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-black/80 text-zinc-200 font-extrabold text-xs tracking-wider border border-white/10 uppercase transition-opacity duration-200 pointer-events-none">
               ПРЕД
             </div>
-            <div class="absolute bottom-4 left-4 z-10 px-3 py-1 bg-black/80 backdrop-blur-md rounded text-zinc-400 text-xs hidden md:block">
+            <div id="baBeforeDetail" class="absolute bottom-4 left-4 z-10 px-3 py-1 bg-black/80 backdrop-blur-md rounded text-zinc-400 text-xs hidden md:block transition-opacity duration-200 pointer-events-none">
               Сурова состојба: отстранети стари плочки, цевки и шут
             </div>
           </div>
