@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="160 92 476 305" style="enable-background:new 160 92 476 305;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#E23E35;}
+	.st1{fill:#FFFFFF;}
+</style>
+<!-- Red Interlocking 'A' Emblem -->
+<g>
+	<polygon class="st0" points="261,301.1 360.6,102 385.4,102 285.9,301.1 		"/>
+	<polygon class="st0" points="385.4,201.5 335.7,301.1 310.8,301.1 360.6,201.5 		"/>
+	<polygon class="st0" points="534.8,301.1 435.2,102 410.3,102 509.9,301.1 		"/>
+	<polygon class="st0" points="435.2,201.5 410.3,201.5 360.6,101.9 385.4,101.9 		"/>
+	<polygon class="st0" points="485,301.1 460.1,301.1 422.8,226.4 447.7,226.4 		"/>
+	<rect x="355.3" y="226.4" class="st0" width="132.9" height="24.9"/>
+</g>
+<!-- Bold White ANTHRA Logotype -->
+<g>
+	<path class="st1" d="M170,387.3l30.7-72.2h14.5l30.7,72.2h-16.5l-6.6-16.1h-30.3l-6.6,16.1H170z M198.2,357.3h19l-9.5-23.2 L198.2,357.3z"/>
+	<path class="st1" d="M257,387.3v-71.7h14.5l33.6,44.1v-44.1h15.6v71.7h-13.4l-34.7-45.6v45.6H257z"/>
+	<path class="st1" d="M354.5,387.3v-57.1h-21.8v-14.5h59.4v14.5h-21.8v57.1H354.5z"/>
+	<path class="st1" d="M404.2,387.3v-71.7H420v28.4H449v-28.4h15.8v71.7H449v-28.8H420v28.8H404.2z"/>
+	<path class="st1" d="M482,387.3v-71.7h32.8c9.1,0,16,2.4,20.9,7.3c4.1,4.1,6.1,9.6,6.1,16.6c0,11-5.1,18.4-15.4,22.2l17.5,25.6 h-18.4l-15.6-22.9h-12.2v22.9H482z M497.8,350.4h16c3.8,0,6.8-0.9,8.9-2.8c2.1-1.9,3.2-4.4,3.2-7.5c0-3.3-1.1-5.9-3.3-7.6 c-2.2-1.7-5.2-2.6-9.1-2.6h-15.7V350.4z"/>
+	<path class="st1" d="M549.9,387.3l30.7-72.2h14.5l30.7,72.2h-16.5l-6.6-16.1h-30.3l-6.6,16.1H549.9z M578.1,357.3h19l-9.5-23.2 L578.1,357.3z"/>
+</g>
+</svg>
