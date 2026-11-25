@@ -331,7 +331,7 @@
   <section id="beforeAfter" class="py-20 bg-carbon relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="text-center max-w-3xl mx-auto mb-8">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase mb-3">
           Вистински Резултати
         </div>
@@ -339,17 +339,62 @@
           Интерактивна споредба: Пред и Потоа
         </h2>
         <p class="text-zinc-400 mt-2 text-sm sm:text-base">
-          Повлечете го црвениот слајдер лево и десно за да ја видите трансформацијата од сурова руина до совршена изведба.
+          Повлечете го црвениот слајдер лево и десно за да ја видите трансформацијата од сурова руина до совршена изведба. Изберете просторија со копчињата или стрелките.
         </p>
+      </div>
+
+      <!-- Room Tabs & Manual Switcher Controls -->
+      <div class="max-w-5xl mx-auto mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Room Selector Pills -->
+        <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2" id="baTabsContainer">
+          <button type="button" class="ba-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-[#E5252A] text-white shadow-lg glow-red-sm" data-slide="0">
+            <span>🚿</span>
+            <span>Бања & Плочки</span>
+          </button>
+          <button type="button" class="ba-tab-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 bg-[#16181E] text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/5" data-slide="1">
+            <span>🛋️</span>
+            <span>Дневен Престој</span>
+          </button>
+          <button type="button" class="ba-tab-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 bg-[#16181E] text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/5" data-slide="2">
+            <span>🍳</span>
+            <span>Кујна & Остров</span>
+          </button>
+          <button type="button" class="ba-tab-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 bg-[#16181E] text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/5" data-slide="3">
+            <span>🛏️</span>
+            <span>Спална & Под</span>
+          </button>
+        </div>
+
+        <!-- Manual Arrow Navigation & Slide Indicator -->
+        <div class="flex items-center gap-2 bg-[#131519]/90 backdrop-blur-md border border-white/10 rounded-xl p-1.5 shrink-0">
+          <button type="button" id="baPrevBtn" class="w-8 h-8 rounded-lg bg-zinc-800 hover:bg-[#E5252A] text-white flex items-center justify-center transition-colors text-sm font-bold active:scale-95" title="Претходна просторија" aria-label="Претходна просторија">
+            &#8592;
+          </button>
+          <span id="baSlideCounter" class="text-xs font-mono font-bold text-zinc-300 px-2 select-none">
+            01 / 04
+          </span>
+          <button type="button" id="baNextBtn" class="w-8 h-8 rounded-lg bg-zinc-800 hover:bg-[#E5252A] text-white flex items-center justify-center transition-colors text-sm font-bold active:scale-95" title="Следна просторија" aria-label="Следна просторија">
+            &#8594;
+          </button>
+        </div>
       </div>
 
       <!-- Slider Container -->
       <div class="max-w-5xl mx-auto relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-black">
         
+        <!-- Active Room Header Strip -->
+        <div class="bg-[#121418] border-b border-white/10 px-5 py-2.5 flex items-center justify-between">
+          <div class="flex items-center gap-2 text-xs font-mono">
+            <span class="w-2 h-2 rounded-full bg-[#E5252A] animate-pulse"></span>
+            <span id="baCurrentTitle" class="text-white font-bold truncate">Бања со плочки 120x60, ниша со LED и скриен сифон</span>
+          </div>
+          <span class="text-[11px] font-mono text-zinc-400 hidden sm:inline">100% Вистинска изведба</span>
+        </div>
+
         <div class="relative w-full h-[380px] sm:h-[500px] select-none" id="baWrapper">
           
           <!-- AFTER Image (Finished Luxury Masterpiece) -->
-          <img src="assets/images/tiles-bathroom.jpg" alt="После изведба на ANTHRA" class="absolute inset-0 w-full h-full object-cover">
+          <img id="baAfterImgTag" src="assets/images/tiles-bathroom.jpg" alt="После изведба на ANTHRA" class="absolute inset-0 w-full h-full object-cover">
           <div id="baAfterBadge" class="absolute top-3 sm:top-4 right-3 sm:right-4 z-0 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-[#E5252A] text-white font-extrabold text-xs tracking-wider shadow-lg uppercase transition-opacity duration-200 pointer-events-none">
             ПОТОА
           </div>
@@ -357,7 +402,7 @@
             Керамика 120x60 • Ниша со LED • 45° Герунг
           </div>
 
-          <!-- BEFORE Image (Raw demolition state of the EXACT same bathroom) -->
+          <!-- BEFORE Image (Raw demolition state of the EXACT same space) -->
           <div id="baBeforeImg" class="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-[#E5252A] z-10" style="width: 50%;">
             <img id="baBeforeImgTag" src="assets/images/renovation-before.jpg" alt="Пред реновирање" class="absolute inset-y-0 left-0 h-full max-w-none object-cover">
             <div id="baBeforeBadge" class="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-black/80 text-zinc-200 font-extrabold text-xs tracking-wider border border-white/10 uppercase transition-opacity duration-200 pointer-events-none">
@@ -367,6 +412,14 @@
               Сурова состојба: отстранети стари плочки, цевки и шут
             </div>
           </div>
+
+          <!-- Floating Manual Side Navigation Buttons (Higher z-index than range slider) -->
+          <button type="button" id="baSidePrevBtn" class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-35 w-10 h-10 rounded-full bg-black/60 hover:bg-[#E5252A] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 active:scale-95 shadow-xl group" title="Претходна просторија" aria-label="Претходна просторија">
+            <span class="group-hover:-translate-x-0.5 transition-transform text-base font-bold">&#8592;</span>
+          </button>
+          <button type="button" id="baSideNextBtn" class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-35 w-10 h-10 rounded-full bg-black/60 hover:bg-[#E5252A] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 active:scale-95 shadow-xl group" title="Следна просторија" aria-label="Следна просторија">
+            <span class="group-hover:translate-x-0.5 transition-transform text-base font-bold">&#8594;</span>
+          </button>
 
           <!-- Center Draggable Line Handle -->
           <div id="baHandle" class="absolute inset-y-0 -ml-4 flex items-center justify-center pointer-events-none z-20" style="left: 50%;">
@@ -381,13 +434,15 @@
         </div>
 
         <!-- Slider Bottom Legend -->
-        <div class="bg-[#14161A] border-t border-white/10 px-6 py-3 flex items-center justify-between text-xs text-zinc-400 font-mono">
+        <div class="bg-[#14161A] border-t border-white/10 px-4 sm:px-6 py-3 flex items-center justify-between text-xs text-zinc-400 font-mono">
           <span class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-zinc-600"></span> 0% Суров простор
+            <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
+            <span id="baLegendBefore">0% Суров простор</span>
           </span>
           <span id="baPercent" class="text-[#E5252A] font-bold">50%</span>
           <span class="flex items-center gap-2">
-            100% Финален луксуз <span class="w-2 h-2 rounded-full bg-[#E5252A]"></span>
+            <span id="baLegendAfter">100% Финален луксуз</span>
+            <span class="w-2 h-2 rounded-full bg-[#E5252A]"></span>
           </span>
         </div>
 

@@ -16,17 +16,80 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Interactive Before / After Renovation Slider
+  // 2. Interactive Multi-Room Before / After Renovation Slider
   const baWrapper = document.getElementById('baWrapper');
   const baRange = document.getElementById('baRange');
   const baBeforeImg = document.getElementById('baBeforeImg');
   const baBeforeImgTag = document.getElementById('baBeforeImgTag');
+  const baAfterImgTag = document.getElementById('baAfterImgTag');
   const baHandle = document.getElementById('baHandle');
   const baPercent = document.getElementById('baPercent');
   const baAfterBadge = document.getElementById('baAfterBadge');
   const baAfterDetail = document.getElementById('baAfterDetail');
   const baBeforeBadge = document.getElementById('baBeforeBadge');
   const baBeforeDetail = document.getElementById('baBeforeDetail');
+  const baCurrentTitle = document.getElementById('baCurrentTitle');
+  const baSlideCounter = document.getElementById('baSlideCounter');
+  const baLegendBefore = document.getElementById('baLegendBefore');
+  const baLegendAfter = document.getElementById('baLegendAfter');
+  const baPrevBtn = document.getElementById('baPrevBtn');
+  const baNextBtn = document.getElementById('baNextBtn');
+  const baSidePrevBtn = document.getElementById('baSidePrevBtn');
+  const baSideNextBtn = document.getElementById('baSideNextBtn');
+  const baTabBtns = document.querySelectorAll('.ba-tab-btn');
+
+  const beforeAfterSlides = [
+    {
+      id: 0,
+      name: "Бања & Плочки",
+      icon: "🚿",
+      title: "Бања со плочки 120x60, ниша со LED и скриен сифон",
+      beforeImg: "assets/images/renovation-before.jpg",
+      afterImg: "assets/images/tiles-bathroom.jpg",
+      beforeDetail: "Сурова состојба: отстранети стари плочки, цевки и шут",
+      afterDetail: "Керамика 120x60 • Ниша со LED • 45° Герунг",
+      beforeLegend: "0% Суров простор",
+      afterLegend: "100% Финален луксуз"
+    },
+    {
+      id: 1,
+      name: "Дневен Престој",
+      icon: "🛋️",
+      title: "Дневен простор со каскаден Knauf LED таван и ТВ панел",
+      beforeImg: "assets/images/living-before.jpg",
+      afterImg: "assets/images/living-after.jpg",
+      beforeDetail: "Рушење, суров бетонски плафон и отворени електрични канали",
+      afterDetail: "Спуштен Knauf таван со скриено LED светло • Дрвен ТВ панел",
+      beforeLegend: "0% Бетон & Кабли",
+      afterLegend: "100% Премиум Дневен Боравок"
+    },
+    {
+      id: 2,
+      name: "Кујна & Остров",
+      icon: "🍳",
+      title: "Модерна кујна со мермерен остров и плочки 120x60",
+      beforeImg: "assets/images/kitchen-before.jpg",
+      afterImg: "assets/images/kitchen-after.jpg",
+      beforeDetail: "Отстранети стари елементи, соголена ѕидарија и отворени цевки",
+      afterDetail: "Мермерен остров • Гранитни плочки 120x60 • Вградено LED",
+      beforeLegend: "0% Демонтиран простор",
+      afterLegend: "100% Модерен отворен концепт"
+    },
+    {
+      id: 3,
+      name: "Спална & Под",
+      icon: "🛏️",
+      title: "Спална соба со природна рибина коска паркет и сокриена завесница",
+      beforeImg: "assets/images/bedroom-before.jpg",
+      afterImg: "assets/images/bedroom-after.jpg",
+      beforeDetail: "Испукана бетонска кошулица и припрема на подлога со прајмер",
+      afterDetail: "Рибина коска паркет • 8cm бели соколи • Ласерска нивелација",
+      beforeLegend: "0% Нерамен бетон",
+      afterLegend: "100% Совршена подна изведба"
+    }
+  ];
+
+  let currentSlideIndex = 0;
 
   function syncBeforeImageSize() {
     if (baWrapper && baBeforeImgTag) {
@@ -54,6 +117,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function renderSlide(index) {
+    if (index < 0) index = beforeAfterSlides.length - 1;
+    if (index >= beforeAfterSlides.length) index = 0;
+    currentSlideIndex = index;
+    const slide = beforeAfterSlides[index];
+
+    // Subtle fade effect for smooth room transition
+    if (baWrapper) {
+      baWrapper.style.transition = 'opacity 0.15s ease';
+      baWrapper.style.opacity = '0.75';
+    }
+
+    setTimeout(() => {
+      if (baAfterImgTag) baAfterImgTag.src = slide.afterImg;
+      if (baBeforeImgTag) baBeforeImgTag.src = slide.beforeImg;
+      if (baAfterDetail) baAfterDetail.textContent = slide.afterDetail;
+      if (baBeforeDetail) baBeforeDetail.textContent = slide.beforeDetail;
+      if (baCurrentTitle) baCurrentTitle.textContent = slide.title;
+      if (baLegendBefore) baLegendBefore.textContent = slide.beforeLegend;
+      if (baLegendAfter) baLegendAfter.textContent = slide.afterLegend;
+      if (baSlideCounter) baSlideCounter.textContent = `0${index + 1} / 0${beforeAfterSlides.length}`;
+
+      // Reset slider to 50%
+      if (baRange) baRange.value = 50;
+      updateSliderPosition(50);
+      syncBeforeImageSize();
+
+      if (baWrapper) {
+        baWrapper.style.opacity = '1';
+      }
+    }, 150);
+
+    // Update Tab Styles
+    baTabBtns.forEach(btn => {
+      const btnSlide = parseInt(btn.getAttribute('data-slide'), 10);
+      if (btnSlide === index) {
+        btn.className = 'ba-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-[#E5252A] text-white shadow-lg glow-red-sm';
+      } else {
+        btn.className = 'ba-tab-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 bg-[#16181E] text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/5';
+      }
+    });
+  }
+
+  // Preload all slide images for instant, flicker-free switching
+  beforeAfterSlides.forEach(s => {
+    const img1 = new Image();
+    img1.src = s.beforeImg;
+    const img2 = new Image();
+    img2.src = s.afterImg;
+  });
+
   if (baRange && baBeforeImg && baHandle) {
     syncBeforeImageSize();
     window.addEventListener('resize', syncBeforeImageSize);
@@ -61,6 +175,22 @@ document.addEventListener('DOMContentLoaded', () => {
     baRange.addEventListener('input', (e) => {
       updateSliderPosition(Number(e.target.value));
     });
+
+    // Wire up tab clicks
+    baTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.getAttribute('data-slide'), 10);
+        renderSlide(idx);
+      });
+    });
+
+    // Wire up top arrow buttons
+    if (baPrevBtn) baPrevBtn.addEventListener('click', () => renderSlide(currentSlideIndex - 1));
+    if (baNextBtn) baNextBtn.addEventListener('click', () => renderSlide(currentSlideIndex + 1));
+
+    // Wire up floating side buttons on slider
+    if (baSidePrevBtn) baSidePrevBtn.addEventListener('click', () => renderSlide(currentSlideIndex - 1));
+    if (baSideNextBtn) baSideNextBtn.addEventListener('click', () => renderSlide(currentSlideIndex + 1));
   }
 
   // 3. Interactive Renovation Stage Visualizer (4 Phases)
