@@ -16,6 +16,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Mobile Direct Call Picker Modal
+  const mobileCallBtn = document.getElementById('mobileCallBtn');
+  const callPickerModal = document.getElementById('callPickerModal');
+  const callPickerBackdrop = document.getElementById('callPickerBackdrop');
+  const closeCallPickerBtn = document.getElementById('closeCallPickerBtn');
+  const cancelCallPickerBtn = document.getElementById('cancelCallPickerBtn');
+
+  function openCallPicker() {
+    if (callPickerModal) {
+      callPickerModal.classList.remove('hidden');
+      callPickerModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeCallPicker() {
+    if (callPickerModal) {
+      callPickerModal.classList.add('hidden');
+      callPickerModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (mobileCallBtn) {
+    mobileCallBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCallPicker();
+    });
+  }
+
+  if (callPickerBackdrop) callPickerBackdrop.addEventListener('click', closeCallPicker);
+  if (closeCallPickerBtn) closeCallPickerBtn.addEventListener('click', closeCallPicker);
+  if (cancelCallPickerBtn) cancelCallPickerBtn.addEventListener('click', closeCallPicker);
+
+  // Close modal when pressing Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && callPickerModal && !callPickerModal.classList.contains('hidden')) {
+      closeCallPicker();
+    }
+  });
+
   // 2. Interactive Multi-Room Before / After Renovation Slider
   const baWrapper = document.getElementById('baWrapper');
   const baRange = document.getElementById('baRange');
@@ -41,11 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const beforeAfterSlides = [
     {
       id: 0,
-      name: "Бања & Плочки",
-      title: "Бања со плочки 120x60, ниша со LED и скриен сифон",
+      name: "Бања & Керамика",
+      title: "Бања со керамика 120x60, ниша со LED и скриен сифон",
       beforeImg: "assets/images/renovation-before.jpg",
       afterImg: "assets/images/tiles-bathroom.jpg",
-      beforeDetail: "Сурова состојба: отстранети стари плочки, цевки и шут",
+      beforeDetail: "Сурова состојба: отстранета стара керамика, цевки и шут",
       afterDetail: "Керамика 120x60 • Ниша со LED • 45° Герунг",
       beforeLegend: "0% Суров простор",
       afterLegend: "100% Финален луксуз"
@@ -64,11 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 2,
       name: "Кујна & Остров",
-      title: "Модерна кујна со мермерен остров и плочки 120x60",
+      title: "Модерна кујна со мермерен остров и керамика 120x60",
       beforeImg: "assets/images/kitchen-before.jpg",
       afterImg: "assets/images/kitchen-after.jpg",
       beforeDetail: "Отстранети стари елементи, соголена ѕидарија и отворени цевки",
-      afterDetail: "Мермерен остров • Гранитни плочки 120x60 • Вградено LED",
+      afterDetail: "Мермерен остров • Гранитна керамика 120x60 • Вградено LED",
       beforeLegend: "0% Демонтиран простор",
       afterLegend: "100% Модерен отворен концепт"
     },
@@ -79,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
       beforeImg: "assets/images/bedroom-before.jpg",
       afterImg: "assets/images/bedroom-after.jpg",
       beforeDetail: "Испукана бетонска кошулица и припрема на подлога со прајмер",
-      afterDetail: "",
+      afterDetail: "Рибина коска паркет • 8cm бели MDF лајсни • Ласерска нивелација",
       beforeLegend: "0% Нерамен бетон",
       afterLegend: "100% Совршена подна изведба"
     }
@@ -193,22 +234,49 @@ document.addEventListener('DOMContentLoaded', () => {
     // Wire up external side navigation arrows (bold red, no circle)
     if (baOuterPrevBtn) baOuterPrevBtn.addEventListener('click', () => renderSlide(currentSlideIndex - 1));
     if (baOuterNextBtn) baOuterNextBtn.addEventListener('click', () => renderSlide(currentSlideIndex + 1));
+
+    // Wire up mobile bottom navigation buttons
+    const baMobilePrevBtn = document.getElementById('baMobilePrevBtn');
+    const baMobileNextBtn = document.getElementById('baMobileNextBtn');
+    if (baMobilePrevBtn) baMobilePrevBtn.addEventListener('click', () => renderSlide(currentSlideIndex - 1));
+    if (baMobileNextBtn) baMobileNextBtn.addEventListener('click', () => renderSlide(currentSlideIndex + 1));
   }
 
-  // 3. Interactive Renovation Stage Visualizer (4 Phases)
+  // 3. Interactive Renovation Stage Visualizer (4 Phases with 2x2 Unified House Grid)
   const stageButtons = document.querySelectorAll('.stage-btn');
   const stageTitle = document.getElementById('stageTitle');
   const stageBadge = document.getElementById('stageBadge');
   const stageDesc = document.getElementById('stageDesc');
   const stagePoints = document.getElementById('stagePoints');
-  const visualizerImg = document.getElementById('visualizerImg');
+  const visualizerGrid = document.getElementById('visualizerGrid');
+
+  const visImg0 = document.getElementById('visImg0');
+  const visLabel0 = document.getElementById('visLabel0');
+  const visSub0 = document.getElementById('visSub0');
+
+  const visImg1 = document.getElementById('visImg1');
+  const visLabel1 = document.getElementById('visLabel1');
+  const visSub1 = document.getElementById('visSub1');
+
+  const visImg2 = document.getElementById('visImg2');
+  const visLabel2 = document.getElementById('visLabel2');
+  const visSub2 = document.getElementById('visSub2');
+
+  const visImg3 = document.getElementById('visImg3');
+  const visLabel3 = document.getElementById('visLabel3');
+  const visSub3 = document.getElementById('visSub3');
 
   const stageData = {
     1: {
       title: "Фаза 1: Увид на терен, Демонтажа & Подготовка",
       badge: "Увид & Подготовка",
-      img: "assets/images/renovation-before.jpg",
-      desc: "Секој успешен простор започнува со точна ласерска геометрија. Излегуваме на терен, го отстрануваме стариот материјал, ги испитуваме подовите и ѕидовите со професионални ласерски нивелири со толеранција под 1mm и ја подготвуваме основата.",
+      desc: "Секој успешен простор започнува со точна ласерска геометрија. Излегуваме на терен, го отстрануваме стариот материјал, ги испитуваме подовите и ѕидовите со професионални ласерски нивелири со толеранција под 1mm и ја подготвуваме основата низ сите 4 простории од објектот.",
+      rooms: [
+        { name: "Бања", status: "Демонтажа & шут", img: "assets/images/renovation-before.jpg" },
+        { name: "Дневна Соба", status: "Суров бетон & кабли", img: "assets/images/living-before.jpg" },
+        { name: "Кујна", status: "Инсталации & ѕид", img: "assets/images/kitchen-before.jpg" },
+        { name: "Спална Соба", status: "Припрема на подлога", img: "assets/images/bedroom-before.jpg" }
+      ],
       points: [
         "Ласерска проверка на рамнини и прави агли (90°)",
         "Чиста демонтажа и организиран одвоз на градежен шут",
@@ -218,8 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
     2: {
       title: "Фаза 2: Сува Градба, Гипс Картон & Скриено LED Светло",
       badge: "Архитектура на Тавани",
-      img: "assets/images/gypsum-ceiling.jpg",
-      desc: "Изведба на модерни каскадни спуштени тавани со Knauf системи. Вградуваме алуминиумски профили за скриени индиректни LED светла, завесници и акустични преградни ѕидови со камена волна.",
+      desc: "Изведба на модерни каскадни спуштени тавани со Knauf системи низ целата куќа. Вградуваме алуминиумски профили за скриени индиректни LED светла, завесници и акустични преградни ѕидови со камена волна.",
+      rooms: [
+        { name: "Бања", status: "Влагоотпорен гипс", img: "assets/images/phase-drywall-bath.jpg" },
+        { name: "Дневна Соба", status: "Knauf каскаден таван", img: "assets/images/gypsum-ceiling.jpg" },
+        { name: "Кујна", status: "LED кутија за аспиратор", img: "assets/images/phase-drywall-kitchen.jpg" },
+        { name: "Спална Соба", status: "Сокриена завесница", img: "assets/images/phase-drywall-bedroom.jpg" }
+      ],
       points: [
         "Knauf алуминиумска подконструкција со анкер висење без вибрации",
         "Алуминиумски канали за вградени магнетни шини и LED траки",
@@ -229,8 +302,13 @@ document.addEventListener('DOMContentLoaded', () => {
     3: {
       title: "Фаза 3: Керамика Голем Формат & Премиум Винил Подови",
       badge: "Мајсторска Изведба",
-      img: "assets/images/flooring-vinyl.jpg",
-      desc: "Поставување на плочки од голем формат (120x60 / 120x120) со дијамантски 45° герунг споеви, како и премиум водоотпорни LVT/SPC винил подови со висока звучна изолација.",
+      desc: "Поставување на керамика од голем формат (120x60 / 120x120) со дијамантски 45° герунг споеви во влажните зони, и премиум водоотпорни LVT/SPC винил подови и паркет со висока звучна изолација.",
+      rooms: [
+        { name: "Бања", status: "Керамика 120x60 & герунг", img: "assets/images/phase-tiling-bath.jpg" },
+        { name: "Дневна Соба", status: "SPC винил монтажа", img: "assets/images/flooring-vinyl.jpg" },
+        { name: "Кујна", status: "Гранитна подна керамика", img: "assets/images/phase-tiling-kitchen.jpg" },
+        { name: "Спална Соба", status: "Рибина коска паркет", img: "assets/images/flooring-parquet.jpg" }
+      ],
       points: [
         "Герунг обработка на сите надворешни агли под 45° без пластични лајсни",
         "Водоотпорни SPC Винил подови – тивки, топли и идеални за кујни и бањи",
@@ -240,8 +318,13 @@ document.addEventListener('DOMContentLoaded', () => {
     4: {
       title: "Фаза 4: Финален Луксуз & Контрола на Квалитет",
       badge: "Твој простор. Наша експертиза.",
-      img: "assets/images/apartment-complete.jpg",
-      desc: "Финална монтажа на санитарија, лајсни за подови, тестирање на осветлувањето и детално примопредавање на чист и готов објект според договор.",
+      desc: "Финална монтажа на санитарија, 8cm бели MDF лајсни за подови, тестирање на осветлувањето и детално примопредавање на чист и готов објект според договор клуч на рака.",
+      rooms: [
+        { name: "Бања", status: "Финален луксуз", img: "assets/images/tiles-bathroom.jpg" },
+        { name: "Дневна Соба", status: "Премиум изведба", img: "assets/images/living-after.jpg" },
+        { name: "Кујна", status: "Мермерен остров & LED", img: "assets/images/kitchen-after.jpg" },
+        { name: "Спална Соба", status: "Комплетиран комфор", img: "assets/images/bedroom-after.jpg" }
+      ],
       points: [
         "Детална проверка на секој раб и фуга со сопственикот",
         "Писмена гаранција за стабилност и квалитет на изведбата",
@@ -253,6 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
   stageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const stage = btn.dataset.stage;
+      collapseAllCards();
       
       stageButtons.forEach(b => {
         b.classList.remove('bg-[#E5252A]', 'text-white', 'border-[#E5252A]', 'glow-red-sm');
@@ -264,12 +348,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const data = stageData[stage];
       if (data) {
-        if (visualizerImg) {
-          visualizerImg.style.opacity = '0.3';
+        if (visualizerGrid) {
+          visualizerGrid.style.opacity = '0.3';
           setTimeout(() => {
-            visualizerImg.src = data.img;
-            visualizerImg.style.opacity = '1';
-          }, 200);
+            if (data.rooms && data.rooms.length === 4) {
+              if (visImg0) visImg0.src = data.rooms[0].img;
+              if (visLabel0) visLabel0.textContent = data.rooms[0].name;
+              if (visSub0) visSub0.textContent = data.rooms[0].status;
+
+              if (visImg1) visImg1.src = data.rooms[1].img;
+              if (visLabel1) visLabel1.textContent = data.rooms[1].name;
+              if (visSub1) visSub1.textContent = data.rooms[1].status;
+
+              if (visImg2) visImg2.src = data.rooms[2].img;
+              if (visLabel2) visLabel2.textContent = data.rooms[2].name;
+              if (visSub2) visSub2.textContent = data.rooms[2].status;
+
+              if (visImg3) visImg3.src = data.rooms[3].img;
+              if (visLabel3) visLabel3.textContent = data.rooms[3].name;
+              if (visSub3) visSub3.textContent = data.rooms[3].status;
+            }
+            visualizerGrid.style.opacity = '1';
+          }, 180);
         }
         if (stageTitle) stageTitle.textContent = data.title;
         if (stageBadge) stageBadge.textContent = data.badge;
@@ -283,6 +383,67 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+  });
+
+  // Interactive Expanding Multi-Room Grid on Hover / Tap (Smooth Luxury Transition)
+  const visCards = document.querySelectorAll('.vis-card');
+  const visGrid = document.getElementById('visualizerGrid');
+  const visMobileCollapseBtn = document.getElementById('visMobileCollapseBtn');
+
+  function expandCard(index) {
+    visCards.forEach((c, idx) => {
+      if (idx === index) {
+        c.classList.add('is-expanded');
+      } else {
+        c.classList.remove('is-expanded');
+      }
+    });
+    if (visMobileCollapseBtn) {
+      visMobileCollapseBtn.classList.remove('opacity-0', 'pointer-events-none');
+      visMobileCollapseBtn.classList.add('opacity-100', 'pointer-events-auto');
+    }
+  }
+
+  function collapseAllCards() {
+    visCards.forEach(c => c.classList.remove('is-expanded'));
+    if (visMobileCollapseBtn) {
+      visMobileCollapseBtn.classList.add('opacity-0', 'pointer-events-none');
+      visMobileCollapseBtn.classList.remove('opacity-100', 'pointer-events-auto');
+    }
+  }
+
+  visCards.forEach((card, idx) => {
+    card.addEventListener('mouseenter', () => {
+      expandCard(idx);
+    });
+    card.addEventListener('click', (e) => {
+      if (!card.classList.contains('is-expanded')) {
+        expandCard(idx);
+      }
+    });
+  });
+
+  if (visMobileCollapseBtn) {
+    visMobileCollapseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      collapseAllCards();
+    });
+  }
+
+  if (visGrid) {
+    visGrid.addEventListener('mouseleave', () => {
+      collapseAllCards();
+    });
+  }
+
+  // Preload all stage visualizer images for instant switching
+  Object.values(stageData).forEach(stg => {
+    if (stg.rooms) {
+      stg.rooms.forEach(r => {
+        const img = new Image();
+        img.src = r.img;
+      });
+    }
   });
 
   // 4. Project Gallery Filter & Lightbox
@@ -344,55 +505,79 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Interactive Free On-Site Inspection Configurator (NO PRICE, just direct custom inquiry)
+  // 5. Interactive On-Site Inspection Configurator (Direct WhatsApp & Viber 1-Click Send)
   const inquiryForm = document.getElementById('inquiryForm');
   const whatsappInquiryBtn = document.getElementById('whatsappInquiryBtn');
+  const viberInquiryBtn = document.getElementById('viberInquiryBtn');
+
+  // Official ANTHRA Contact Numbers
+  const ANTHRA_WHATSAPP_NUMBER = '38970616028'; // WhatsApp: 070 616 028
+  const ANTHRA_VIBER_NUMBER = '38971778256';    // Viber: 071 778 256
+
+  function handleInquirySend(channel) {
+    const clientName = document.getElementById('inquiryName')?.value.trim();
+    const clientPhone = document.getElementById('inquiryPhone')?.value.trim();
+    const city = document.getElementById('inquiryCity')?.value.trim() || 'Скопје';
+    const spaceType = document.querySelector('input[name="spaceType"]:checked')?.value || 'Стан';
+    const sqm = document.getElementById('inquirySqm')?.value.trim() || 'Ориентационо';
+    const notes = document.getElementById('inquiryNotes')?.value.trim() || '';
+
+    if (!clientName || !clientPhone) {
+      alert('Ве молиме пополнете ги задолжителните полиња (Име и Телефон) пред да испратите.');
+      if (!clientName) document.getElementById('inquiryName')?.focus();
+      else document.getElementById('inquiryPhone')?.focus();
+      return;
+    }
+
+    // Collect selected services
+    const selectedServices = [];
+    document.querySelectorAll('.inquiry-service:checked').forEach(cb => {
+      selectedServices.push(cb.value);
+    });
+    const servicesText = selectedServices.length > 0 ? selectedServices.join(', ') : 'Општо барање за увид';
+
+    // Structured message template
+    const message = `Почитувани ANTHRA,\nБи сакал да закажам теренски увид:\n\n` +
+      `👤 Име: ${clientName}\n` +
+      `📞 Телефон: ${clientPhone}\n` +
+      `📍 Град/Локација: ${city}\n` +
+      `🏠 Објект: ${spaceType} (~${sqm})\n` +
+      `🔨 Потребни услуги: ${servicesText}\n` +
+      (notes ? `📝 Забелешка: ${notes}\n\n` : '\n') +
+      `Ве молам за повратна информација за термин за увид.`;
+
+    const encoded = encodeURIComponent(message);
+
+    if (channel === 'whatsapp') {
+      window.open(`https://wa.me/${ANTHRA_WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
+    } else if (channel === 'viber') {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = `viber://chat?number=%2B${ANTHRA_VIBER_NUMBER}&draft=${encoded}`;
+      } else {
+        window.open(`viber://chat?number=%2B${ANTHRA_VIBER_NUMBER}`, '_blank');
+      }
+    }
+  }
 
   if (whatsappInquiryBtn) {
     whatsappInquiryBtn.addEventListener('click', (e) => {
       e.preventDefault();
+      handleInquirySend('whatsapp');
+    });
+  }
 
-      // Collect selected services
-      const selectedServices = [];
-      document.querySelectorAll('.inquiry-service:checked').forEach(cb => {
-        selectedServices.push(cb.value);
-      });
-
-      const spaceType = document.querySelector('input[name="spaceType"]:checked')?.value || 'Не е наведено';
-      const sqm = document.getElementById('inquirySqm')?.value || 'Ориентационо';
-      const city = document.getElementById('inquiryCity')?.value || 'Скопје';
-      const clientName = document.getElementById('inquiryName')?.value || 'Клиент';
-      const clientPhone = document.getElementById('inquiryPhone')?.value || '';
-      const notes = document.getElementById('inquiryNotes')?.value || '';
-
-      const servicesText = selectedServices.length > 0 ? selectedServices.join(', ') : 'Општа реновација';
-
-      const message = `Почитувани ANTHRA,\nБи сакал да закажам бесплатен увид за реновација:\n` +
-        `👤 Име: ${clientName}\n` +
-        `📞 Телефон: ${clientPhone}\n` +
-        `📍 Локација: ${city}\n` +
-        `🏠 Тип простор: ${spaceType} (~${sqm} m²)\n` +
-        `🔨 Потребни услуги: ${servicesText}\n` +
-        (notes ? `📝 Забелешка: ${notes}\n` : '') +
-        `Ве молам за контакт за увид на лице место.`;
-
-      const encoded = encodeURIComponent(message);
-      // Opens WhatsApp chat
-      window.open(`https://wa.me/38970000000?text=${encoded}`, '_blank');
+  if (viberInquiryBtn) {
+    viberInquiryBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleInquirySend('viber');
     });
   }
 
   if (inquiryForm) {
     inquiryForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const successBanner = document.getElementById('inquirySuccessBanner');
-      if (successBanner) {
-        successBanner.classList.remove('hidden');
-        inquiryForm.reset();
-        setTimeout(() => {
-          successBanner.classList.add('hidden');
-        }, 6000);
-      }
+      handleInquirySend('whatsapp');
     });
   }
 

@@ -157,6 +157,83 @@ body.cursor-hover .cursor-glow-ring {
   will-change: transform;
 }
 
+/* Interactive Multi-Room Expanding Grid */
+.vis-grid-container {
+  position: relative;
+  width: 100%;
+  height: 360px;
+}
+@media (min-width: 640px) {
+  .vis-grid-container {
+    height: 440px;
+  }
+}
+@media (min-width: 1024px) {
+  .vis-grid-container {
+    height: 480px;
+  }
+}
+
+.vis-card {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 0.85rem;
+  transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  z-index: 5;
+}
+
+.vis-card-0 {
+  top: 8px;
+  left: 8px;
+  width: calc(50% - 12px);
+  height: calc(50% - 12px);
+}
+.vis-card-1 {
+  top: 8px;
+  left: calc(50% + 4px);
+  width: calc(50% - 12px);
+  height: calc(50% - 12px);
+}
+.vis-card-2 {
+  top: calc(50% + 4px);
+  left: 8px;
+  width: calc(50% - 12px);
+  height: calc(50% - 12px);
+}
+.vis-card-3 {
+  top: calc(50% + 4px);
+  left: calc(50% + 4px);
+  width: calc(50% - 12px);
+  height: calc(50% - 12px);
+}
+
+.vis-card.is-expanded {
+  top: 8px !important;
+  left: 8px !important;
+  width: calc(100% - 16px) !important;
+  height: calc(100% - 16px) !important;
+  z-index: 25 !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(229, 37, 42, 0.35) !important;
+  border-color: rgba(229, 37, 42, 0.5) !important;
+}
+
+.vis-card .vis-expand-hint {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.vis-card.is-expanded .vis-expand-hint {
+  opacity: 1;
+}
+
+/* Hide room sub-badges on mobile screens to maximize image visibility */
+@media (max-width: 639px) {
+  .vis-sub-badge {
+    display: none !important;
+  }
+}
+
 /* Hide only on mobile phone screens */
 @media (max-width: 768px) {
   .cursor-glow-ring,
