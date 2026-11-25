@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
       beforeImg: "assets/images/bedroom-before.jpg",
       afterImg: "assets/images/bedroom-after.jpg",
       beforeDetail: "Испукана бетонска кошулица и припрема на подлога со прајмер",
-      afterDetail: "Рибина коска паркет • 8cm бели соколи • Ласерска нивелација",
+      afterDetail: "",
       beforeLegend: "0% Нерамен бетон",
       afterLegend: "100% Совршена подна изведба"
     }
@@ -128,8 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       if (baAfterImgTag) baAfterImgTag.src = slide.afterImg;
       if (baBeforeImgTag) baBeforeImgTag.src = slide.beforeImg;
-      if (baAfterDetail) baAfterDetail.textContent = slide.afterDetail;
-      if (baBeforeDetail) baBeforeDetail.textContent = slide.beforeDetail;
+      if (baAfterDetail) {
+        baAfterDetail.textContent = slide.afterDetail || '';
+        baAfterDetail.style.display = slide.afterDetail ? '' : 'none';
+      }
+      if (baBeforeDetail) {
+        baBeforeDetail.textContent = slide.beforeDetail || '';
+        baBeforeDetail.style.display = slide.beforeDetail ? '' : 'none';
+      }
       if (baCurrentTitle) baCurrentTitle.textContent = slide.title;
       if (baLegendBefore) baLegendBefore.textContent = slide.beforeLegend;
       if (baLegendAfter) baLegendAfter.textContent = slide.afterLegend;
