@@ -379,72 +379,83 @@
         </div>
       </div>
 
-      <!-- Slider Container -->
-      <div class="max-w-5xl mx-auto relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-black">
+      <!-- Slider Outer Container with External Side Navigation Arrows -->
+      <div class="relative max-w-6xl mx-auto flex items-center justify-center gap-1 sm:gap-3 md:gap-5">
         
-        <!-- Active Room Header Strip -->
-        <div class="bg-[#121418] border-b border-white/10 px-5 py-2.5 flex items-center justify-between">
-          <div class="flex items-center gap-2 text-xs font-mono">
-            <span class="w-2 h-2 rounded-full bg-[#E5252A] animate-pulse"></span>
-            <span id="baCurrentTitle" class="text-white font-bold truncate">Бања со плочки 120x60, ниша со LED и скриен сифон</span>
-          </div>
-          <span class="text-[11px] font-mono text-zinc-400 hidden sm:inline">100% Вистинска изведба</span>
-        </div>
+        <!-- Left Bold Red Arrow (Outside, no circle) -->
+        <button type="button" id="baOuterPrevBtn" class="group p-1 sm:p-2 text-[#E5252A] hover:text-white hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer shrink-0 focus:outline-none drop-shadow-[0_0_12px_rgba(229,37,42,0.5)]" title="Претходна просторија (лево)" aria-label="Претходна просторија">
+          <svg class="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 19 8 12 15 5"></polyline>
+          </svg>
+        </button>
 
-        <div class="relative w-full h-[380px] sm:h-[500px] select-none" id="baWrapper">
+        <!-- Slider Container Card -->
+        <div class="flex-1 min-w-0 w-full max-w-5xl relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-black">
           
-          <!-- AFTER Image (Finished Luxury Masterpiece) -->
-          <img id="baAfterImgTag" src="assets/images/tiles-bathroom.jpg" alt="После изведба на ANTHRA" class="absolute inset-0 w-full h-full object-cover">
-          <div id="baAfterBadge" class="absolute top-3 sm:top-4 right-3 sm:right-4 z-0 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-[#E5252A] text-white font-extrabold text-xs tracking-wider shadow-lg uppercase transition-opacity duration-200 pointer-events-none">
-            ПОТОА
-          </div>
-          <div id="baAfterDetail" class="absolute bottom-4 right-4 z-0 px-3 py-1 bg-black/70 backdrop-blur-md rounded text-zinc-300 text-xs hidden md:block transition-opacity duration-200 pointer-events-none">
-            Керамика 120x60 • Ниша со LED • 45° Герунг
-          </div>
-
-          <!-- BEFORE Image (Raw demolition state of the EXACT same space) -->
-          <div id="baBeforeImg" class="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-[#E5252A] z-10" style="width: 50%;">
-            <img id="baBeforeImgTag" src="assets/images/renovation-before.jpg" alt="Пред реновирање" class="absolute inset-y-0 left-0 h-full max-w-none object-cover">
-            <div id="baBeforeBadge" class="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-black/80 text-zinc-200 font-extrabold text-xs tracking-wider border border-white/10 uppercase transition-opacity duration-200 pointer-events-none">
-              ПРЕД
+          <!-- Active Room Header Strip -->
+          <div class="bg-[#121418] border-b border-white/10 px-5 py-2.5 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs font-mono">
+              <span class="w-2 h-2 rounded-full bg-[#E5252A] animate-pulse"></span>
+              <span id="baCurrentTitle" class="text-white font-bold truncate">Бања со плочки 120x60, ниша со LED и скриен сифон</span>
             </div>
-            <div id="baBeforeDetail" class="absolute bottom-4 left-4 z-10 px-3 py-1 bg-black/80 backdrop-blur-md rounded text-zinc-400 text-xs hidden md:block transition-opacity duration-200 pointer-events-none">
-              Сурова состојба: отстранети стари плочки, цевки и шут
-            </div>
+            <span class="text-[11px] font-mono text-zinc-400 hidden sm:inline">100% Вистинска изведба</span>
           </div>
 
-          <!-- Floating Manual Side Navigation Buttons (Higher z-index than range slider) -->
-          <button type="button" id="baSidePrevBtn" class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-35 w-10 h-10 rounded-full bg-black/60 hover:bg-[#E5252A] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 active:scale-95 shadow-xl group" title="Претходна просторија" aria-label="Претходна просторија">
-            <span class="group-hover:-translate-x-0.5 transition-transform text-base font-bold">&#8592;</span>
-          </button>
-          <button type="button" id="baSideNextBtn" class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-35 w-10 h-10 rounded-full bg-black/60 hover:bg-[#E5252A] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 active:scale-95 shadow-xl group" title="Следна просторија" aria-label="Следна просторија">
-            <span class="group-hover:translate-x-0.5 transition-transform text-base font-bold">&#8594;</span>
-          </button>
-
-          <!-- Center Draggable Line Handle -->
-          <div id="baHandle" class="absolute inset-y-0 -ml-4 flex items-center justify-center pointer-events-none z-20" style="left: 50%;">
-            <div class="w-8 h-8 rounded-full bg-[#E5252A] text-white flex items-center justify-center shadow-xl font-mono text-xs font-bold ring-4 ring-black/60">
-              &#10231;
+          <div class="relative w-full h-[380px] sm:h-[500px] select-none" id="baWrapper">
+            
+            <!-- AFTER Image (Finished Luxury Masterpiece) -->
+            <img id="baAfterImgTag" src="assets/images/tiles-bathroom.jpg" alt="После изведба на ANTHRA" class="absolute inset-0 w-full h-full object-cover">
+            <div id="baAfterBadge" class="absolute top-3 sm:top-4 right-3 sm:right-4 z-0 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-[#E5252A] text-white font-extrabold text-xs tracking-wider shadow-lg uppercase transition-opacity duration-200 pointer-events-none">
+              ПОТОА
             </div>
+            <div id="baAfterDetail" class="absolute bottom-4 right-4 z-0 px-3 py-1 bg-black/70 backdrop-blur-md rounded text-zinc-300 text-xs hidden md:block transition-opacity duration-200 pointer-events-none">
+              Керамика 120x60 • Ниша со LED • 45° Герунг
+            </div>
+
+            <!-- BEFORE Image (Raw demolition state of the EXACT same space) -->
+            <div id="baBeforeImg" class="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-[#E5252A] z-10" style="width: 50%;">
+              <img id="baBeforeImgTag" src="assets/images/renovation-before.jpg" alt="Пред реновирање" class="absolute inset-y-0 left-0 h-full max-w-none object-cover">
+              <div id="baBeforeBadge" class="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded bg-black/80 text-zinc-200 font-extrabold text-xs tracking-wider border border-white/10 uppercase transition-opacity duration-200 pointer-events-none">
+                ПРЕД
+              </div>
+              <div id="baBeforeDetail" class="absolute bottom-4 left-4 z-10 px-3 py-1 bg-black/80 backdrop-blur-md rounded text-zinc-400 text-xs hidden md:block transition-opacity duration-200 pointer-events-none">
+                Сурова состојба: отстранети стари плочки, цевки и шут
+              </div>
+            </div>
+
+            <!-- Center Draggable Line Handle -->
+            <div id="baHandle" class="absolute inset-y-0 -ml-4 flex items-center justify-center pointer-events-none z-20" style="left: 50%;">
+              <div class="w-8 h-8 rounded-full bg-[#E5252A] text-white flex items-center justify-center shadow-xl font-mono text-xs font-bold ring-4 ring-black/60">
+                &#10231;
+              </div>
+            </div>
+
+            <!-- Invisible Range Input for Dragging -->
+            <input id="baRange" type="range" min="0" max="100" value="50" class="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30" aria-label="Слајдер за пред и потоа">
+
           </div>
 
-          <!-- Invisible Range Input for Dragging -->
-          <input id="baRange" type="range" min="0" max="100" value="50" class="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30" aria-label="Слајдер за пред и потоа">
+          <!-- Slider Bottom Legend -->
+          <div class="bg-[#14161A] border-t border-white/10 px-4 sm:px-6 py-3 flex items-center justify-between text-xs text-zinc-400 font-mono">
+            <span class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
+              <span id="baLegendBefore">0% Суров простор</span>
+            </span>
+            <span id="baPercent" class="text-[#E5252A] font-bold">50%</span>
+            <span class="flex items-center gap-2">
+              <span id="baLegendAfter">100% Финален луксуз</span>
+              <span class="w-2 h-2 rounded-full bg-[#E5252A]"></span>
+            </span>
+          </div>
 
         </div>
 
-        <!-- Slider Bottom Legend -->
-        <div class="bg-[#14161A] border-t border-white/10 px-4 sm:px-6 py-3 flex items-center justify-between text-xs text-zinc-400 font-mono">
-          <span class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
-            <span id="baLegendBefore">0% Суров простор</span>
-          </span>
-          <span id="baPercent" class="text-[#E5252A] font-bold">50%</span>
-          <span class="flex items-center gap-2">
-            <span id="baLegendAfter">100% Финален луксуз</span>
-            <span class="w-2 h-2 rounded-full bg-[#E5252A]"></span>
-          </span>
-        </div>
+        <!-- Right Bold Red Arrow (Outside, no circle) -->
+        <button type="button" id="baOuterNextBtn" class="group p-1 sm:p-2 text-[#E5252A] hover:text-white hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer shrink-0 focus:outline-none drop-shadow-[0_0_12px_rgba(229,37,42,0.5)]" title="Следна просторија (десно)" aria-label="Следна просторија">
+          <svg class="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 19 16 12 9 5"></polyline>
+          </svg>
+        </button>
 
       </div>
 

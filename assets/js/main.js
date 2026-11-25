@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const baLegendAfter = document.getElementById('baLegendAfter');
   const baPrevBtn = document.getElementById('baPrevBtn');
   const baNextBtn = document.getElementById('baNextBtn');
-  const baSidePrevBtn = document.getElementById('baSidePrevBtn');
-  const baSideNextBtn = document.getElementById('baSideNextBtn');
+  const baOuterPrevBtn = document.getElementById('baOuterPrevBtn');
+  const baOuterNextBtn = document.getElementById('baOuterNextBtn');
   const baTabBtns = document.querySelectorAll('.ba-tab-btn');
 
   const beforeAfterSlides = [
@@ -188,9 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (baPrevBtn) baPrevBtn.addEventListener('click', () => renderSlide(currentSlideIndex - 1));
     if (baNextBtn) baNextBtn.addEventListener('click', () => renderSlide(currentSlideIndex + 1));
 
-    // Wire up floating side buttons on slider
-    if (baSidePrevBtn) baSidePrevBtn.addEventListener('click', () => renderSlide(currentSlideIndex - 1));
-    if (baSideNextBtn) baSideNextBtn.addEventListener('click', () => renderSlide(currentSlideIndex + 1));
+    // Wire up external side navigation arrows (bold red, no circle)
+    if (baOuterPrevBtn) baOuterPrevBtn.addEventListener('click', () => renderSlide(currentSlideIndex - 1));
+    if (baOuterNextBtn) baOuterNextBtn.addEventListener('click', () => renderSlide(currentSlideIndex + 1));
   }
 
   // 3. Interactive Renovation Stage Visualizer (4 Phases)
