@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 0,
       name: "Бања & Плочки",
-      icon: "🚿",
       title: "Бања со плочки 120x60, ниша со LED и скриен сифон",
       beforeImg: "assets/images/renovation-before.jpg",
       afterImg: "assets/images/tiles-bathroom.jpg",
@@ -53,20 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 1,
-      name: "Дневен Престој",
-      icon: "🛋️",
-      title: "Дневен простор со каскаден Knauf LED таван и ТВ панел",
+      name: "Дневна Соба",
+      title: "Дневна соба со каскаден Knauf LED таван и ТВ панел",
       beforeImg: "assets/images/living-before.jpg",
       afterImg: "assets/images/living-after.jpg",
       beforeDetail: "Рушење, суров бетонски плафон и отворени електрични канали",
       afterDetail: "Спуштен Knauf таван со скриено LED светло • Дрвен ТВ панел",
       beforeLegend: "0% Бетон & Кабли",
-      afterLegend: "100% Премиум Дневен Боравок"
+      afterLegend: "100% Премиум Дневна Соба"
     },
     {
       id: 2,
       name: "Кујна & Остров",
-      icon: "🍳",
       title: "Модерна кујна со мермерен остров и плочки 120x60",
       beforeImg: "assets/images/kitchen-before.jpg",
       afterImg: "assets/images/kitchen-after.jpg",
@@ -78,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 3,
       name: "Спална & Под",
-      icon: "🛏️",
       title: "Спална соба со природна рибина коска паркет и сокриена завесница",
       beforeImg: "assets/images/bedroom-before.jpg",
       afterImg: "assets/images/bedroom-after.jpg",
@@ -153,9 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
     baTabBtns.forEach(btn => {
       const btnSlide = parseInt(btn.getAttribute('data-slide'), 10);
       if (btnSlide === index) {
-        btn.className = 'ba-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-[#E5252A] text-white shadow-lg glow-red-sm';
+        btn.className = 'ba-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#E5252A] text-white shadow-lg glow-red-sm';
       } else {
-        btn.className = 'ba-tab-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 bg-[#16181E] text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/5';
+        btn.className = 'ba-tab-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-[#16181E] text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/5';
       }
     });
   }
