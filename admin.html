@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="mk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANTHRA Админ Панел | Управување со Галерија</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            anthra: {
+              red: '#E5252A',
+              redDark: '#B91418',
+              dark: '#0B0C0E',
+              card: '#131519',
+              slate: '#1E2229'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'Segoe UI', 'sans-serif'],
+            mono: ['Space Grotesk', 'Inter', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Supabase JS SDK (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Anthra Supabase Integration Library -->
+  <script src="assets/js/supabase-config.js"></script>
+
+  <style>
+    body {
+      background-color: #0B0C0E;
+      font-family: 'Inter', sans-serif;
+    }
+    .glow-red {
+      box-shadow: 0 0 25px rgba(229, 37, 42, 0.35);
+    }
+    .glow-red-sm {
+      box-shadow: 0 0 12px rgba(229, 37, 42, 0.3);
+    }
+    .glass-card {
+      background: rgba(19, 21, 25, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-zinc-100 flex flex-col justify-between selection:bg-[#E5252A] selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="border-b border-white/10 bg-[#0E1014]/90 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="assets/images/anthra-logo-nav.svg" alt="ANTHRA" class="h-8 w-auto">
+        </a>
+        <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-red-950/80 text-[#E5252A] border border-red-500/30 uppercase">
+          CMS ПАНЕЛ
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html#gallery" target="_blank" class="text-xs font-semibold text-zinc-400 hover:text-white transition-colors flex items-center gap-1">
+          <span>Отвори сајт</span>
+          <span>↗</span>
+        </a>
+
+        <!-- Logout button (visible only when logged in) -->
+        <button id="logoutBtn" type="button" class="hidden text-xs font-semibold py-1.5 px-3 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white border border-white/10 transition-colors">
+          Одјави се
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- 1. LOGIN SCREEN (Visible when logged out) -->
+    <div id="loginSection" class="max-w-md mx-auto my-12">
+      <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-[#E5252A]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="text-center mb-6">
+          <div class="w-12 h-12 rounded-xl bg-red-950/60 border border-red-500/30 flex items-center justify-center mx-auto mb-3 text-[#E5252A]">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v2H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-1V6a4 4 0 00-4-4zm2 6V6a2 2 0 10-4 0v2h4zm-2 5a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/></svg>
+          </div>
+          <h2 class="text-xl font-bold text-white">ANTHRA Админ Најава</h2>
+          <p class="text-xs text-zinc-400 mt-1">Внесете ги вашите податоци за управување со галеријата</p>
+        </div>
+
+        <!-- Login Error Alert -->
+        <div id="loginError" class="hidden mb-4 p-3 rounded-xl bg-red-950/80 border border-red-500/40 text-red-300 text-xs"></div>
+
+        <form id="loginForm" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-zinc-300 mb-1.5">Е-маил адреса</label>
+            <input type="email" id="loginEmail" required placeholder="anthrabau@gmail.com" class="w-full bg-[#181B22] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A] transition-colors">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-zinc-300 mb-1.5">Лозинка</label>
+            <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full bg-[#181B22] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A] transition-colors">
+          </div>
+
+          <button type="submit" id="loginSubmitBtn" class="w-full py-3 rounded-xl bg-[#E5252A] hover:bg-[#B91418] text-white font-bold text-sm transition-all glow-red-sm active:scale-98">
+            Најави се
+          </button>
+        </form>
+
+        <!-- Quick Demo Hint / Supabase Config Toggle -->
+        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] text-zinc-400">
+          <span>Демо најава: <strong class="text-zinc-200">anthrabau@gmail.com</strong> / <strong class="text-zinc-200">anthra2026</strong></span>
+          <button type="button" id="toggleConfigBtn" class="text-[#E5252A] hover:underline">
+            Поставки ⚙️
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. DASHBOARD (Visible when logged in) -->
+    <div id="dashboardSection" class="hidden space-y-8">
+
+      <!-- Welcome Banner & Quick Actions -->
+      <div class="glass-card rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-mono text-[#E5252A] font-bold uppercase tracking-wider">Добредојдовте во контролниот панел</span>
+          <h1 class="text-2xl font-extrabold text-white mt-1">Галерија на проекти</h1>
+          <p class="text-xs text-zinc-400 mt-1">
+            Најавени сте како: <span id="userEmailBadge" class="text-zinc-200 font-semibold font-mono"></span>
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="#newProjectForm" class="py-2.5 px-4 rounded-xl bg-[#E5252A] hover:bg-[#B91418] text-white text-xs font-bold transition-all glow-red-sm flex items-center gap-2">
+            <span>+</span>
+            <span>Додади нов проект</span>
+          </a>
+          <button type="button" id="openSettingsModalBtn" class="p-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white border border-white/10 transition-colors" title="Поставки за база">
+            ⚙️
+          </button>
+        </div>
+      </div>
+
+      <!-- Add New Project Form Card -->
+      <div id="newProjectForm" class="glass-card rounded-2xl p-6 sm:p-8">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded bg-[#E5252A]"></span>
+            Додади нова слика во галеријата
+          </h2>
+          <span class="text-xs font-mono text-zinc-400">ИНСТАНТ ОБЈАВА</span>
+        </div>
+
+        <!-- Success/Error Feedback Banner -->
+        <div id="formFeedback" class="hidden mb-6 p-4 rounded-xl text-sm font-medium"></div>
+
+        <form id="projectUploadForm" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Left Inputs -->
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  1. Категорија на проектот <span class="text-[#E5252A]">*</span>
+                </label>
+                <select id="projectCategory" required class="w-full bg-[#181B22] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E5252A] transition-colors">
+                  <option value="roofs" data-label="Кровови & Санација">Кровови (Нови кровови & Санација)</option>
+                  <option value="tiles" data-label="Керамика & Бањи">Керамика & Бањи (Голем формат)</option>
+                  <option value="gypsum" data-label="Гипс & LED Тавани">Гипс Картон & Скриено LED Светло</option>
+                  <option value="vinyl" data-label="Винил Подови (LVT/SPC)">Винил Подови (SPC / LVT)</option>
+                  <option value="flooring" data-label="Дрвени Подови & Паркет">Дрвени Подови & Рибина Коска</option>
+                  <option value="renovation" data-label="Комплетна Реновација">Комплетна Реновација (Клуч на рака)</option>
+                  <option value="__new__" class="font-bold text-[#E5252A] bg-zinc-900">+ Додади нова категорија...</option>
+                </select>
+
+                <!-- Hidden Input for Custom Category (Reveals when __new__ is selected) -->
+                <div id="newCategoryWrapper" class="hidden mt-3 p-3.5 rounded-xl bg-red-950/30 border border-red-500/40 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-red-400 flex items-center gap-1.5">
+                      <span>✨</span> Креирај нова категорија
+                    </span>
+                    <span class="text-[10px] text-zinc-400">Автоматски креира ново копче на сајтот</span>
+                  </div>
+                  <input type="text" id="customCategoryInput" placeholder="Пр: Фасади & Изолација, Санитарија..." class="w-full bg-[#181B22] border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A]">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  2. Наслов на изведбата <span class="text-[#E5252A]">*</span>
+                </label>
+                <input type="text" id="projectTitle" required placeholder="Пр: Нов кров на куќа во Карпош или Бања 120x60" class="w-full bg-[#181B22] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A] transition-colors">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  3. Детален опис за изведбата (за прикажување при зголемување)
+                </label>
+                <textarea id="projectDesc" rows="3" placeholder="Пр: Комплетна изведба со здрава чамова граѓа, паропропусна фолија, антрацит ќерамиди и ласерска нивелација." class="w-full bg-[#181B22] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A] transition-colors"></textarea>
+              </div>
+            </div>
+
+            <!-- Right: Photo Upload & Live Preview -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                4. Фотографија од изведбата <span class="text-[#E5252A]">*</span>
+              </label>
+
+              <!-- Upload Drag & Drop Box -->
+              <div id="dropZone" class="border-2 border-dashed border-white/20 hover:border-[#E5252A] rounded-2xl p-6 text-center cursor-pointer transition-colors bg-[#181B22]/60 min-h-[220px] flex flex-col items-center justify-center relative group">
+                <input type="file" id="projectImageInput" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" required>
+                
+                <div id="uploadPlaceholder" class="space-y-2 pointer-events-none">
+                  <div class="w-12 h-12 rounded-full bg-red-950/40 text-[#E5252A] flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/></svg>
+                  </div>
+                  <div class="text-sm font-bold text-white">Кликни за сликање или избор од галерија</div>
+                  <div class="text-xs text-zinc-400">JPG, PNG, WEBP (автоматски се оптимизира)</div>
+                </div>
+
+                <!-- Live Preview (Hidden until image selected) -->
+                <div id="previewContainer" class="hidden w-full h-full absolute inset-0 rounded-2xl overflow-hidden z-0">
+                  <img id="imagePreview" src="" alt="Преглед" class="w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="px-3 py-1.5 rounded-lg bg-black/80 text-white text-xs font-bold">Кликни за промена</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. Scale / Fit Option -->
+              <div class="mt-4">
+                <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  5. Приказ на сликата во картичката
+                </label>
+                <div class="grid grid-cols-2 gap-3">
+                  <label class="cursor-pointer border border-white/10 rounded-xl p-3 flex items-start gap-2.5 bg-[#181B22] hover:border-[#E5252A] transition-colors has-[:checked]:border-[#E5252A] has-[:checked]:bg-red-950/20">
+                    <input type="radio" name="imageFit" value="cover" checked class="mt-0.5 text-[#E5252A] focus:ring-0">
+                    <div>
+                      <div class="text-xs font-bold text-white">🖼️ Исполни картичка</div>
+                      <div class="text-[10px] text-zinc-400 mt-0.5">Зумирано, симетрична мрежа</div>
+                    </div>
+                  </label>
+
+                  <label class="cursor-pointer border border-white/10 rounded-xl p-3 flex items-start gap-2.5 bg-[#181B22] hover:border-[#E5252A] transition-colors has-[:checked]:border-[#E5252A] has-[:checked]:bg-red-950/20">
+                    <input type="radio" name="imageFit" value="contain" class="mt-0.5 text-[#E5252A] focus:ring-0">
+                    <div>
+                      <div class="text-xs font-bold text-white">🔍 Цела слика (100%)</div>
+                      <div class="text-[10px] text-zinc-400 mt-0.5">Без кратење (за високи слики)</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-4 border-t border-white/10 flex justify-end">
+            <button type="submit" id="saveProjectBtn" class="py-3 px-8 rounded-xl bg-[#E5252A] hover:bg-[#B91418] text-white font-bold text-sm transition-all glow-red-sm flex items-center gap-2 cursor-pointer active:scale-95 disabled:opacity-50">
+              <span id="saveBtnSpinner" class="hidden animate-spin">⏳</span>
+              <span id="saveBtnText">💾 Објави проект во галерија</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Published Projects List -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded bg-emerald-500"></span>
+              Моментално објавени проекти
+            </h2>
+            <p class="text-xs text-zinc-400 mt-1">Овие проекти веднаш се прикажуваат во галеријата на главниот сајт</p>
+          </div>
+
+          <button id="refreshProjectsBtn" type="button" class="text-xs text-zinc-400 hover:text-white flex items-center gap-1 font-semibold py-1.5 px-3 rounded-lg bg-zinc-800 transition-colors">
+            <span>🔄</span> Освежи
+          </button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="col-span-full py-12 text-center text-zinc-500 text-sm">Вчитување на проектите...</div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- 3. SUPABASE CONFIGURATION MODAL / DRAWER -->
+  <div id="configModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="glass-card rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-5 relative">
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <div>
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <span>⚙️</span> Поставки за Supabase
+          </h3>
+          <p class="text-xs text-zinc-400">Внесете ги податоците од вашиот бесплатен Supabase проект</p>
+        </div>
+        <button id="closeConfigModalBtn" type="button" class="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center font-bold text-sm">
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Project URL</label>
+          <input type="text" id="configUrlInput" placeholder="https://phbeivajcnmofgvlzfle.supabase.co" class="w-full bg-[#181B22] border border-white/10 rounded-xl px-4 py-2 text-xs font-mono text-white placeholder-zinc-600 focus:outline-none focus:border-[#E5252A]">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Publishable / Anon API Key</label>
+          <textarea id="configKeyInput" rows="3" placeholder="sb_publishable_..." class="w-full bg-[#181B22] border border-white/10 rounded-xl px-4 py-2 text-xs font-mono text-white placeholder-zinc-600 focus:outline-none focus:border-[#E5252A]"></textarea>
+        </div>
+
+        <div class="p-3 rounded-xl bg-zinc-900/90 border border-white/5 text-[11px] text-zinc-400 space-y-1.5">
+          <div class="font-bold text-zinc-300">💡 Како да ги најдете овие клучеви (2 минути):</div>
+          <ol class="list-decimal list-inside space-y-0.5">
+            <li>Отворете <a href="https://supabase.com" target="_blank" class="text-[#E5252A] hover:underline">supabase.com</a> и креирајте бесплатен проект.</li>
+            <li>Одете во <strong>Settings → API</strong> и копирајте ги <strong>URL</strong> и <strong>anon public key</strong>.</li>
+            <li>Одете во <strong>Storage</strong> и креирајте Bucket со име <strong>gallery</strong> (штиклирајте <em>Public Bucket</em>).</li>
+          </ol>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 border-t border-white/10">
+          <button id="clearConfigBtn" type="button" class="text-xs text-zinc-500 hover:text-red-400">
+            Ресетирај клучеви
+          </button>
+          <button id="saveConfigBtn" type="button" class="py-2.5 px-6 rounded-xl bg-[#E5252A] hover:bg-[#B91418] text-white font-bold text-xs glow-red-sm transition-all">
+            Зачувај поставки
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-4 text-center text-xs text-zinc-500">
+    &copy; 2026 ANTHRA Градежни Услуги & Реновации • Сигурен CMS панел
+  </footer>
+
+  <!-- ADMIN LOGIC SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const loginSection = document.getElementById('loginSection');
+      const dashboardSection = document.getElementById('dashboardSection');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const userEmailBadge = document.getElementById('userEmailBadge');
+      
+      const loginForm = document.getElementById('loginForm');
+      const loginEmail = document.getElementById('loginEmail');
+      const loginPassword = document.getElementById('loginPassword');
+      const loginError = document.getElementById('loginError');
+      const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+
+      const projectUploadForm = document.getElementById('projectUploadForm');
+      const projectCategory = document.getElementById('projectCategory');
+      const newCategoryWrapper = document.getElementById('newCategoryWrapper');
+      const customCategoryInput = document.getElementById('customCategoryInput');
+      const projectTitle = document.getElementById('projectTitle');
+      const projectDesc = document.getElementById('projectDesc');
+      const projectImageInput = document.getElementById('projectImageInput');
+      const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+      const previewContainer = document.getElementById('previewContainer');
+      const imagePreview = document.getElementById('imagePreview');
+      const saveProjectBtn = document.getElementById('saveProjectBtn');
+      const saveBtnSpinner = document.getElementById('saveBtnSpinner');
+      const saveBtnText = document.getElementById('saveBtnText');
+      const formFeedback = document.getElementById('formFeedback');
+
+      const projectsGrid = document.getElementById('projectsGrid');
+      const refreshProjectsBtn = document.getElementById('refreshProjectsBtn');
+
+      // Config Modal Elements
+      const configModal = document.getElementById('configModal');
+      const toggleConfigBtn = document.getElementById('toggleConfigBtn');
+      const openSettingsModalBtn = document.getElementById('openSettingsModalBtn');
+      const closeConfigModalBtn = document.getElementById('closeConfigModalBtn');
+      const configUrlInput = document.getElementById('configUrlInput');
+      const configKeyInput = document.getElementById('configKeyInput');
+      const saveConfigBtn = document.getElementById('saveConfigBtn');
+      const clearConfigBtn = document.getElementById('clearConfigBtn');
+
+      // 1. Initial Auth Check
+      async function checkAuth() {
+        const user = await window.AnthraCMS.getUser();
+        if (user) {
+          showDashboard(user);
+        } else {
+          showLogin();
+        }
+      }
+
+      function showDashboard(user) {
+        loginSection.classList.add('hidden');
+        dashboardSection.classList.remove('hidden');
+        logoutBtn.classList.remove('hidden');
+        userEmailBadge.textContent = user.email || 'Администратор';
+        loadProjects();
+      }
+
+      function showLogin() {
+        loginSection.classList.remove('hidden');
+        dashboardSection.classList.add('hidden');
+        logoutBtn.classList.add('hidden');
+      }
+
+      // 2. Login Submit Handler
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        loginError.classList.add('hidden');
+        loginSubmitBtn.disabled = true;
+        loginSubmitBtn.textContent = 'Проверка на податоци...';
+
+        try {
+          const user = await window.AnthraCMS.login(loginEmail.value.trim(), loginPassword.value);
+          showDashboard(user);
+        } catch (err) {
+          loginError.textContent = err.message || 'Грешка при најава.';
+          loginError.classList.remove('hidden');
+        } finally {
+          loginSubmitBtn.disabled = false;
+          loginSubmitBtn.textContent = 'Најави се';
+        }
+      });
+
+      // 3. Logout Handler
+      logoutBtn.addEventListener('click', async () => {
+        await window.AnthraCMS.logout();
+        showLogin();
+      });
+
+      // 4. Image Input Live Preview & Fit Mode
+      const imageFitRadios = document.querySelectorAll('input[name="imageFit"]');
+      function updateImagePreviewFit() {
+        const selectedFit = document.querySelector('input[name="imageFit"]:checked')?.value || 'cover';
+        if (selectedFit === 'contain') {
+          imagePreview.className = 'w-full h-full object-contain p-2 bg-black/60';
+        } else {
+          imagePreview.className = 'w-full h-full object-cover';
+        }
+      }
+      imageFitRadios.forEach(r => r.addEventListener('change', updateImagePreviewFit));
+
+      projectImageInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            imagePreview.src = evt.target.result;
+            updateImagePreviewFit();
+            uploadPlaceholder.classList.add('hidden');
+            previewContainer.classList.remove('hidden');
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Category Selection Change (Toggle Custom Category Input)
+      projectCategory.addEventListener('change', () => {
+        if (projectCategory.value === '__new__') {
+          newCategoryWrapper.classList.remove('hidden');
+          customCategoryInput.focus();
+        } else {
+          newCategoryWrapper.classList.add('hidden');
+        }
+      });
+
+      // 5. Add New Project Form Submit
+      projectUploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formFeedback.classList.add('hidden');
+
+        const file = projectImageInput.files && projectImageInput.files[0];
+        if (!file) {
+          showFeedback('Ве молиме изберете слика од објектот.', 'error');
+          return;
+        }
+
+        let finalCategory = projectCategory.value;
+        let finalCategoryLabel = '';
+
+        if (finalCategory === '__new__') {
+          const customVal = customCategoryInput.value.trim();
+          if (!customVal) {
+            showFeedback('Ве молиме внесете име за новата категорија.', 'error');
+            customCategoryInput.focus();
+            return;
+          }
+          // Create clean URL-safe slug for filtering
+          const slug = 'cat_' + customVal.toLowerCase()
+            .replace(/[^a-zA-Z0-9\u0400-\u04FF]+/g, '_')
+            .replace(/^_+|_+$/g, '');
+          finalCategory = slug || ('cat_' + Date.now());
+          finalCategoryLabel = customVal;
+        } else {
+          const selectedOption = projectCategory.options[projectCategory.selectedIndex];
+          finalCategoryLabel = selectedOption ? (selectedOption.getAttribute('data-label') || selectedOption.text) : finalCategory;
+        }
+
+        const selectedFit = document.querySelector('input[name="imageFit"]:checked')?.value || 'cover';
+
+        const projectData = {
+          title: projectTitle.value.trim(),
+          category: finalCategory,
+          category_label: finalCategoryLabel,
+          description: projectDesc.value.trim(),
+          image_fit: selectedFit
+        };
+
+        saveProjectBtn.disabled = true;
+        saveBtnSpinner.classList.remove('hidden');
+        saveBtnText.textContent = 'Оптимизација и зачувување...';
+
+        try {
+          await window.AnthraCMS.addProject(projectData, file);
+          showFeedback('✔ Проектот е успешно објавен во галеријата!', 'success');
+          
+          // Reset form
+          projectTitle.value = '';
+          projectDesc.value = '';
+          projectImageInput.value = '';
+          customCategoryInput.value = '';
+          newCategoryWrapper.classList.add('hidden');
+          projectCategory.selectedIndex = 0;
+          const defaultFitRadio = document.querySelector('input[name="imageFit"][value="cover"]');
+          if (defaultFitRadio) defaultFitRadio.checked = true;
+          updateImagePreviewFit();
+          imagePreview.src = '';
+          uploadPlaceholder.classList.remove('hidden');
+          previewContainer.classList.add('hidden');
+
+          // Refresh published list
+          await loadProjects();
+        } catch (err) {
+          showFeedback('Грешка: ' + (err.message || 'Не успеа зачувувањето.'), 'error');
+        } finally {
+          saveProjectBtn.disabled = false;
+          saveBtnSpinner.classList.add('hidden');
+          saveBtnText.textContent = '💾 Објави проект во галерија';
+        }
+      });
+
+      function showFeedback(msg, type) {
+        formFeedback.textContent = msg;
+        formFeedback.className = 'mb-6 p-4 rounded-xl text-sm font-medium ' + 
+          (type === 'success' ? 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300' : 'bg-red-950/80 border border-red-500/50 text-red-300');
+        formFeedback.classList.remove('hidden');
+      }
+
+      // 6. Load and Render Published Projects
+      async function loadProjects() {
+        projectsGrid.innerHTML = '<div class="col-span-full py-12 text-center text-zinc-500 text-sm">Вчитување на проектите...</div>';
+        
+        try {
+          const projects = await window.AnthraCMS.getProjects();
+
+          // Populate any custom categories created earlier into projectCategory dropdown
+          const standardValues = ['roofs', 'tiles', 'gypsum', 'vinyl', 'flooring', 'renovation', '__new__'];
+          projects.forEach(p => {
+            if (p.category && !standardValues.includes(p.category)) {
+              const exists = projectCategory.querySelector(`option[value="${p.category}"]`);
+              if (!exists) {
+                const opt = document.createElement('option');
+                opt.value = p.category;
+                opt.setAttribute('data-label', p.category_label || p.category);
+                opt.textContent = `${p.category_label || p.category} ✨`;
+                const newOpt = projectCategory.querySelector('option[value="__new__"]');
+                projectCategory.insertBefore(opt, newOpt);
+              }
+            }
+          });
+          
+          if (!projects || projects.length === 0) {
+            projectsGrid.innerHTML = `
+              <div class="col-span-full py-12 text-center text-zinc-500">
+                <div class="text-3xl mb-2">📸</div>
+                <div class="font-bold text-zinc-400">Сè уште нема објавено нови проекти</div>
+                <div class="text-xs mt-1">Искористете ја формата погоре за да ја додадете вашата прва фотографија!</div>
+              </div>`;
+            return;
+          }
+
+          projectsGrid.innerHTML = projects.map(p => {
+            const isContain = (p.image_fit === 'contain') || (p.image_url && p.image_url.includes('fit=contain'));
+            return `
+            <div class="rounded-xl overflow-hidden bg-[#181B22] border border-white/10 flex flex-col justify-between group shadow-lg">
+              <div class="h-48 w-full relative overflow-hidden bg-black flex items-center justify-center">
+                ${isContain ? `
+                  <img src="${p.image_url}" alt="" class="absolute inset-0 w-full h-full object-cover filter blur-sm opacity-30 scale-110 pointer-events-none">
+                  <img src="${p.image_url}" alt="${p.title}" class="relative z-10 max-h-full max-w-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
+                ` : `
+                  <img src="${p.image_url}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                `}
+                <span class="absolute top-2.5 left-2.5 z-20 px-2.5 py-1 rounded bg-[#E5252A] text-white text-[11px] font-bold uppercase shadow">
+                  ${p.category_label || p.category}
+                </span>
+                ${isContain ? `
+                  <span class="absolute top-2.5 right-2.5 z-20 px-2 py-0.5 rounded bg-black/80 border border-white/20 text-zinc-300 text-[10px] font-mono">
+                    100% Fit
+                  </span>
+                ` : ''}
+              </div>
+              <div class="p-4 flex-1 flex flex-col justify-between">
+                <div>
+                  <h4 class="font-bold text-white text-sm line-clamp-1">${p.title}</h4>
+                  <p class="text-xs text-zinc-400 mt-1 line-clamp-2">${p.description || 'Без опис'}</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
+                  <span class="text-[11px] text-zinc-500">${new Date(p.created_at || Date.now()).toLocaleDateString('mk-MK')}</span>
+                  <button type="button" onclick="handleDeleteProject('${p.id}', '${p.storage_path || ''}')" class="text-xs font-semibold text-red-400 hover:text-red-300 flex items-center gap-1 py-1 px-2.5 rounded bg-red-950/40 hover:bg-red-950/80 border border-red-500/20 transition-colors cursor-pointer">
+                    <span>🗑</span> Избриши
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          }).join('');
+
+        } catch (err) {
+          projectsGrid.innerHTML = `<div class="col-span-full py-8 text-center text-red-400 text-sm">Грешка при вчитување: ${err.message}</div>`;
+        }
+      }
+
+      // Global delete handler exposed to window
+      window.handleDeleteProject = async (id, storagePath) => {
+        if (!confirm('Дали сте сигурни дека сакате да го избришете овој проект од галеријата?')) return;
+        
+        try {
+          await window.AnthraCMS.deleteProject({ id, storage_path: storagePath });
+          await loadProjects();
+        } catch (err) {
+          alert('Грешка при бришење: ' + err.message);
+        }
+      };
+
+      if (refreshProjectsBtn) refreshProjectsBtn.addEventListener('click', loadProjects);
+
+      // 7. Settings / Config Modal Handlers
+      function openConfigModal() {
+        const current = window.AnthraCMS.getConfig();
+        configUrlInput.value = (current.url && current.url !== 'https://xyzcompany.supabase.co') ? current.url : '';
+        configKeyInput.value = (current.anonKey && current.anonKey !== 'eyJh...') ? current.anonKey : '';
+        configModal.classList.remove('hidden');
+        configModal.classList.add('flex');
+      }
+
+      function closeConfigModal() {
+        configModal.classList.add('hidden');
+        configModal.classList.remove('flex');
+      }
+
+      if (toggleConfigBtn) toggleConfigBtn.addEventListener('click', openConfigModal);
+      if (openSettingsModalBtn) openSettingsModalBtn.addEventListener('click', openConfigModal);
+      if (closeConfigModalBtn) closeConfigModalBtn.addEventListener('click', closeConfigModal);
+
+      saveConfigBtn.addEventListener('click', () => {
+        const url = configUrlInput.value.trim();
+        const key = configKeyInput.value.trim();
+        if (url && key) {
+          window.AnthraCMS.saveConfig(url, key);
+          alert('Поставките се успешно зачувани! Страницата ќе се освежи.');
+          window.location.reload();
+        } else {
+          alert('Ве молиме пополнете ги двете полиња (URL и Anon Key).');
+        }
+      });
+
+      clearConfigBtn.addEventListener('click', () => {
+        if (confirm('Дали сакате да ги ресетирате зачуваните Supabase клучеви?')) {
+          window.AnthraCMS.clearConfig();
+          window.location.reload();
+        }
+      });
+
+      // Run check on load
+      await checkAuth();
+    });
+  </script>
+</body>
+</html>

@@ -446,42 +446,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 4. Project Gallery Filter & Lightbox
-  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  // 4. Project Gallery Filter & Lightbox (with Dynamic CMS Integration)
+  const galleryFilterContainer = document.getElementById('galleryFilterContainer');
+  const galleryContainer = document.getElementById('galleryContainer');
   const lightboxModal = document.getElementById('lightboxModal');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxTitle = document.getElementById('lightboxTitle');
   const lightboxDesc = document.getElementById('lightboxDesc');
   const closeLightbox = document.getElementById('closeLightbox');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => {
+  let activeGalleryFilter = 'all';
+
+  function applyGalleryFilter(filter) {
+    activeGalleryFilter = filter;
+    const items = document.querySelectorAll('.gallery-item');
+    items.forEach(item => {
+      if (filter === 'all' || (item.dataset.category && item.dataset.category.includes(filter))) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  }
+
+  // Delegated Filter Button Handler (works for both default & dynamically created category buttons)
+  if (galleryFilterContainer) {
+    galleryFilterContainer.addEventListener('click', (e) => {
+      const btn = e.target.closest('.gallery-filter-btn');
+      if (!btn) return;
+
+      const allBtns = galleryFilterContainer.querySelectorAll('.gallery-filter-btn');
+      allBtns.forEach(b => {
         b.classList.remove('bg-[#E5252A]', 'text-white', 'border-[#E5252A]');
         b.classList.add('bg-[#14161A]', 'text-zinc-400', 'border-white/10');
       });
       btn.classList.remove('bg-[#14161A]', 'text-zinc-400', 'border-white/10');
       btn.classList.add('bg-[#E5252A]', 'text-white', 'border-[#E5252A]');
-
-      const filter = btn.dataset.filter;
-      galleryItems.forEach(item => {
-        if (filter === 'all' || item.dataset.category.includes(filter)) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
-      });
+      applyGalleryFilter(btn.dataset.filter);
     });
-  });
+  }
 
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
+  // Delegated Lightbox Click Handler (works for both static and dynamically added projects)
+  if (galleryContainer) {
+    galleryContainer.addEventListener('click', (e) => {
+      const item = e.target.closest('.gallery-item');
+      if (!item) return;
+
       const img = item.querySelector('img');
       const title = item.dataset.title || 'Проект на ANTHRA';
       const desc = item.dataset.desc || 'Професионална изведба со највисок квалитет.';
 
-      if (lightboxModal && lightboxImg) {
+      if (lightboxModal && lightboxImg && img) {
         lightboxImg.src = img.src;
         if (lightboxTitle) lightboxTitle.textContent = title;
         if (lightboxDesc) lightboxDesc.textContent = desc;
@@ -489,7 +504,73 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxModal.classList.add('flex');
       }
     });
-  });
+  }
+
+  // Dynamic CMS Project Loader
+  async function loadDynamicGalleryProjects() {
+    if (!window.AnthraCMS || !galleryContainer) return;
+
+    try {
+      const projects = await window.AnthraCMS.getProjects();
+      if (!projects || projects.length === 0) return;
+
+      // Create and prepend custom uploaded projects to the gallery
+      const dynamicElements = projects.map(p => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item dynamic-item group cursor-pointer';
+        div.dataset.category = p.category || 'all';
+        div.dataset.title = p.title || 'Проект на ANTHRA';
+        div.dataset.desc = p.description || 'Професионална изведба со највисок квалитет.';
+
+        const isContain = (p.image_fit === 'contain') || (p.image_url && p.image_url.includes('fit=contain'));
+
+        div.innerHTML = `
+          <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative flex items-center justify-center">
+            ${isContain ? `
+              <img src="${p.image_url}" alt="" class="absolute inset-0 w-full h-full object-cover filter blur-md opacity-30 scale-110 pointer-events-none">
+              <img src="${p.image_url}" alt="${p.title}" class="relative z-10 max-h-full max-w-full object-contain p-2 group-hover:scale-105 transition-transform duration-500">
+            ` : `
+              <img src="${p.image_url}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            `}
+            <div class="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+              <span class="text-[#E5252A] text-xs font-sans font-bold uppercase">${p.category_label || p.category}</span>
+              <h4 class="text-white font-bold text-base line-clamp-1">${p.title}</h4>
+              <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
+            </div>
+          </div>
+        `;
+        return div;
+      });
+
+      // Insert at the beginning of the gallery
+      dynamicElements.reverse().forEach(el => {
+        galleryContainer.prepend(el);
+      });
+
+      // Automatically register and display new category filter buttons if not already present
+      if (galleryFilterContainer) {
+        projects.forEach(p => {
+          if (!p.category || p.category === 'all') return;
+          const existingBtn = galleryFilterContainer.querySelector(`[data-filter="${p.category}"]`);
+          if (!existingBtn) {
+            const newFilterBtn = document.createElement('button');
+            newFilterBtn.dataset.filter = p.category;
+            newFilterBtn.className = 'gallery-filter-btn px-4 py-2 rounded-lg bg-[#14161A] text-zinc-400 border border-white/10 hover:text-white text-xs sm:text-sm font-semibold transition-all';
+            newFilterBtn.textContent = p.category_label || p.category;
+            galleryFilterContainer.appendChild(newFilterBtn);
+          }
+        });
+      }
+
+      // Re-apply active filter if any
+      applyGalleryFilter(activeGalleryFilter);
+    } catch (err) {
+      console.warn('Anthra: Failed to load dynamic gallery items:', err);
+    }
+  }
+
+  // Trigger dynamic loading
+  loadDynamicGalleryProjects();
 
   if (closeLightbox && lightboxModal) {
     closeLightbox.addEventListener('click', () => {

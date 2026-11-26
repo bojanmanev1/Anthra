@@ -6,14 +6,34 @@
   <title>ANTHRA | Твој простор. Наша експертиза. - Премиум реновации, керамика, гипс картон и винил подови</title>
   <meta name="description" content="ANTHRA - Врвна градежна изведба: нови кровови и комплетна реконструкција на секаков вид кровни конструкции, керамика од голем формат, спуштени тавани и гипс картон со LED осветлување, водоотпорни винил (LVT/SPC) подови и комплетно реновирање.">
   
+  <!-- Open Graph / Facebook / Viber / WhatsApp Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bojanmanev1.github.io/Anthra/">
+  <meta property="og:site_name" content="ANTHRA">
+  <meta property="og:title" content="ANTHRA | Твој простор. Наша експертиза.">
+  <meta property="og:description" content="Премиум градежна изведба: нови кровови и реконструкција, плочки од голем формат, гипс картон со скриено LED светло и водоотпорни винил подови.">
+  <meta property="og:image" content="https://bojanmanev1.github.io/Anthra/assets/images/og-image.jpg">
+  <meta property="og:image:secure_url" content="https://bojanmanev1.github.io/Anthra/assets/images/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ANTHRA Градежни Услуги & Реновации">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://bojanmanev1.github.io/Anthra/">
+  <meta name="twitter:title" content="ANTHRA | Твој простор. Наша експертиза.">
+  <meta name="twitter:description" content="Премиум градежна изведба: нови кровови и реконструкција, плочки од голем формат, гипс картон со скриено LED светло и водоотпорни винил подови.">
+  <meta name="twitter:image" content="https://bojanmanev1.github.io/Anthra/assets/images/og-image.jpg">
+  
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="alternate icon" type="image/svg+xml" href="favicon.svg">
   
-  <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+  <!-- Google Fonts: Inter, Space Grotesk & Plus Jakarta Sans (Full Cyrillic + Latin) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -32,8 +52,8 @@
             }
           },
           fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['Space Grotesk', 'monospace']
+            sans: ['Plus Jakarta Sans', 'Inter', 'Segoe UI', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['Space Grotesk', 'Inter', 'Segoe UI', 'system-ui', '-apple-system', 'sans-serif']
           }
         }
       }
@@ -213,7 +233,7 @@
 
             <!-- Logo Service Icons Micro Strip -->
             <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between gap-3">
-              <span class="text-[11px] font-mono text-zinc-400">Специјалности:</span>
+              <span class="text-[11px] font-sans text-zinc-400">Специјалности:</span>
               <img src="assets/images/anthra-services-icons.svg" alt="ANTHRA Специјалности" class="h-5 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
             </div>
 
@@ -230,7 +250,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-14">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-sans font-bold text-[#E5252A] uppercase mb-3">
           <span class="w-1.5 h-1.5 rounded-full bg-[#E5252A]"></span>
           Фази на изведба (Чекор по чекор)
         </div>
@@ -269,9 +289,9 @@
         <div class="lg:col-span-7 relative flex flex-col gap-3">
           <!-- Top Info Strip: House Project Indicator (Left Aligned) -->
           <div class="flex items-center px-1">
-            <span class="text-xs font-mono text-zinc-400 flex items-center gap-1.5">
+            <span class="text-xs font-sans text-zinc-400 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-[#E5252A] animate-pulse"></span>
-              <span class="text-zinc-300 font-medium">Објект: Семејна Куќа (4 Простории)</span>
+              <span class="text-zinc-300 font-semibold">Објект: Семејна Куќа (4 Простории)</span>
               <span class="text-zinc-500 hidden sm:inline">• Помини за зголемување</span>
             </span>
           </div>
@@ -286,9 +306,9 @@
               <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
                 <div class="flex items-center gap-2">
                   <span id="visLabel0" class="text-xs sm:text-sm font-bold text-white tracking-wide drop-shadow">Бања</span>
-                  <span class="vis-expand-hint text-[10px] text-zinc-400 font-mono hidden sm:inline">(Зголемен приказ)</span>
+                  <span class="vis-expand-hint text-[10px] text-zinc-400 font-sans hidden sm:inline">(Зголемен приказ)</span>
                 </div>
-                <span id="visSub0" class="vis-sub-badge hidden sm:inline-block text-[10px] sm:text-xs font-mono text-zinc-300 bg-black/70 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10">Демонтажа & шут</span>
+                <span id="visSub0" class="vis-sub-badge hidden sm:inline-block text-[10px] sm:text-xs font-sans font-medium text-zinc-200 bg-black/75 px-2.5 py-0.5 rounded backdrop-blur-sm border border-white/15">Демонтажа & шут</span>
               </div>
             </div>
 
@@ -299,9 +319,9 @@
               <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
                 <div class="flex items-center gap-2">
                   <span id="visLabel1" class="text-xs sm:text-sm font-bold text-white tracking-wide drop-shadow">Дневна Соба</span>
-                  <span class="vis-expand-hint text-[10px] text-zinc-400 font-mono hidden sm:inline">(Зголемен приказ)</span>
+                  <span class="vis-expand-hint text-[10px] text-zinc-400 font-sans hidden sm:inline">(Зголемен приказ)</span>
                 </div>
-                <span id="visSub1" class="vis-sub-badge hidden sm:inline-block text-[10px] sm:text-xs font-mono text-zinc-300 bg-black/70 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10">Суров бетон & кабли</span>
+                <span id="visSub1" class="vis-sub-badge hidden sm:inline-block text-[10px] sm:text-xs font-sans font-medium text-zinc-200 bg-black/75 px-2.5 py-0.5 rounded backdrop-blur-sm border border-white/15">Суров бетон & кабли</span>
               </div>
             </div>
 
@@ -312,9 +332,9 @@
               <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
                 <div class="flex items-center gap-2">
                   <span id="visLabel2" class="text-xs sm:text-sm font-bold text-white tracking-wide drop-shadow">Кујна</span>
-                  <span class="vis-expand-hint text-[10px] text-zinc-400 font-mono hidden sm:inline">(Зголемен приказ)</span>
+                  <span class="vis-expand-hint text-[10px] text-zinc-400 font-sans hidden sm:inline">(Зголемен приказ)</span>
                 </div>
-                <span id="visSub2" class="vis-sub-badge hidden sm:inline-block text-[10px] sm:text-xs font-mono text-zinc-300 bg-black/70 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10">Инсталации & ѕид</span>
+                <span id="visSub2" class="vis-sub-badge hidden sm:inline-block text-[10px] sm:text-xs font-sans font-medium text-zinc-200 bg-black/75 px-2.5 py-0.5 rounded backdrop-blur-sm border border-white/15">Инсталации & ѕид</span>
               </div>
             </div>
 
@@ -325,14 +345,14 @@
               <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
                 <div class="flex items-center gap-2">
                   <span id="visLabel3" class="text-xs sm:text-sm font-bold text-white tracking-wide drop-shadow">Спална Соба</span>
-                  <span class="vis-expand-hint text-[10px] text-zinc-400 font-mono hidden sm:inline">(Зголемен приказ)</span>
+                  <span class="vis-expand-hint text-[10px] text-zinc-400 font-sans hidden sm:inline">(Зголемен приказ)</span>
                 </div>
-                <span id="visSub3" class="vis-sub-badge hidden sm:inline-block text-[10px] sm:text-xs font-mono text-zinc-300 bg-black/70 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10">Припрема на подлога</span>
+                <span id="visSub3" class="vis-sub-badge hidden sm:inline-block text-[10px] sm:text-xs font-sans font-medium text-zinc-200 bg-black/75 px-2.5 py-0.5 rounded backdrop-blur-sm border border-white/15">Припрема на подлога</span>
               </div>
             </div>
 
             <!-- Mobile-only Collapse Button (Shown only when expanded on mobile screens) -->
-            <button type="button" id="visMobileCollapseBtn" class="sm:hidden absolute top-3 right-3 z-30 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md text-white border border-white/20 text-xs font-mono font-bold flex items-center gap-1.5 shadow-2xl active:scale-95 opacity-0 pointer-events-none transition-opacity duration-300 cursor-pointer" title="Назад кон 2x2 приказ">
+            <button type="button" id="visMobileCollapseBtn" class="sm:hidden absolute top-3 right-3 z-30 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md text-white border border-white/20 text-xs font-sans font-bold flex items-center gap-1.5 shadow-2xl active:scale-95 opacity-0 pointer-events-none transition-opacity duration-300 cursor-pointer" title="Назад кон 2x2 приказ">
               <span>✕</span>
               <span>2x2 мрежа</span>
             </button>
@@ -351,7 +371,7 @@
           </p>
 
           <div class="space-y-3 pt-2 border-t border-white/10">
-            <div class="text-xs font-mono uppercase tracking-wider text-zinc-400">Стандарди на ANTHRA изведба:</div>
+            <div class="text-xs font-sans font-bold uppercase tracking-wider text-zinc-400">Стандарди на ANTHRA изведба:</div>
             <ul id="stagePoints" class="space-y-2">
               <li class="flex items-start gap-2.5 text-zinc-300 text-sm">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#E5252A] mt-2 shrink-0"></span>
@@ -387,7 +407,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-8">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-sans font-bold text-[#E5252A] uppercase mb-3">
           Вистински Резултати
         </div>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -445,11 +465,11 @@
           
           <!-- Active Room Header Strip -->
           <div class="bg-[#121418] border-b border-white/10 px-5 py-2.5 flex items-center justify-between">
-            <div class="flex items-center gap-2 text-xs font-mono">
+            <div class="flex items-center gap-2 text-xs font-sans">
               <span class="w-2 h-2 rounded-full bg-[#E5252A] animate-pulse"></span>
               <span id="baCurrentTitle" class="text-white font-bold truncate">Бања со керамика 120x60, ниша со LED и скриен сифон</span>
             </div>
-            <span class="text-[11px] font-mono text-zinc-400 hidden sm:inline">100% Вистинска изведба</span>
+            <span class="text-[11px] font-sans font-medium text-zinc-400 hidden sm:inline">100% Вистинска изведба</span>
           </div>
 
           <div class="relative w-full h-[380px] sm:h-[500px] select-none" id="baWrapper">
@@ -487,7 +507,7 @@
           </div>
 
           <!-- Slider Bottom Legend -->
-          <div class="bg-[#14161A] border-t border-white/10 px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-center sm:justify-between text-xs text-zinc-400 font-mono">
+          <div class="bg-[#14161A] border-t border-white/10 px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-center sm:justify-between text-xs text-zinc-400 font-sans">
             <span class="hidden sm:flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
               <span id="baLegendBefore">0% Суров простор</span>
@@ -512,13 +532,13 @@
 
       <!-- Mobile-only Navigation Buttons Under the Slider -->
       <div class="flex sm:hidden items-center justify-between max-w-5xl mx-auto mt-3.5 select-none">
-        <button type="button" id="baMobilePrevBtn" class="flex-1 mr-1.5 py-2.5 rounded-xl bg-[#14161A] border border-white/10 text-white hover:text-[#E5252A] flex items-center justify-center gap-2 text-xs font-mono font-bold active:scale-95 transition-all shadow-lg cursor-pointer">
+        <button type="button" id="baMobilePrevBtn" class="flex-1 mr-1.5 py-2.5 rounded-xl bg-[#14161A] border border-white/10 text-white hover:text-[#E5252A] flex items-center justify-center gap-2 text-xs font-sans font-bold active:scale-95 transition-all shadow-lg cursor-pointer">
           <svg class="w-4 h-4 text-[#E5252A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 19 8 12 15 5"></polyline>
           </svg>
           <span>Претходна</span>
         </button>
-        <button type="button" id="baMobileNextBtn" class="flex-1 ml-1.5 py-2.5 rounded-xl bg-[#14161A] border border-white/10 text-white hover:text-[#E5252A] flex items-center justify-center gap-2 text-xs font-mono font-bold active:scale-95 transition-all shadow-lg cursor-pointer">
+        <button type="button" id="baMobileNextBtn" class="flex-1 ml-1.5 py-2.5 rounded-xl bg-[#14161A] border border-white/10 text-white hover:text-[#E5252A] flex items-center justify-center gap-2 text-xs font-sans font-bold active:scale-95 transition-all shadow-lg cursor-pointer">
           <span>Следна</span>
           <svg class="w-4 h-4 text-[#E5252A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 19 16 12 9 5"></polyline>
@@ -534,7 +554,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="mb-12 sm:mb-14">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-sans font-bold text-[#E5252A] uppercase mb-3">
           Специјалности & Изведба
         </div>
         <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -546,13 +566,13 @@
       <div class="mb-14 p-6 sm:p-7 rounded-2xl bg-[#131519]/90 border border-white/10 backdrop-blur-xl">
         <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
           <div class="text-center lg:text-left max-w-md">
-            <span class="text-xs font-mono uppercase tracking-widest text-[#E5252A] font-bold block mb-1">Официјален ANTHRA Стандард</span>
+            <span class="text-xs font-sans font-bold uppercase tracking-widest text-[#E5252A] block mb-1">Официјален ANTHRA Стандард</span>
             <h3 class="text-base sm:text-lg font-bold text-white">7 Специјализирани фази на изведба</h3>
             <p class="text-xs text-zinc-400 mt-1 mb-3">Секој симбол во нашето лого претставува специјализирана градежна изведба со прецизен мајсторски стандард:</p>
             
             <!-- Bullet Section: What we do -> pointing to the icons -->
             <div class="pt-3 border-t border-white/10 space-y-2 text-left">
-              <div class="text-xs font-mono font-bold text-[#E5252A] uppercase tracking-wider">
+              <div class="text-xs font-sans font-bold text-[#E5252A] uppercase tracking-wider">
                 <span>Го работиме следното:</span>
               </div>
               <ul class="space-y-1.5 text-xs text-zinc-300">
@@ -759,7 +779,7 @@
         
         <!-- Left: Explanation of personal pricing -->
         <div class="lg:col-span-5 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-sans font-bold text-[#E5252A] uppercase">
             Директна Проценка
           </div>
 
@@ -816,7 +836,7 @@
                 <span class="w-2.5 h-2.5 rounded bg-[#E5252A]"></span>
                 Барање за увид и понуда
               </h3>
-              <span class="text-xs text-zinc-400 font-mono">ДИРЕКТЕН КОНТАКТ</span>
+              <span class="text-xs text-zinc-400 font-sans font-bold">ДИРЕКТЕН КОНТАКТ</span>
             </div>
 
             <!-- Success notification banner (hidden by default) -->
@@ -828,7 +848,7 @@
               
               <!-- STEP 1: Select Needed Services (Including Vinyl!) -->
               <div>
-                <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                <label class="block text-xs font-sans font-bold uppercase tracking-wider text-zinc-400 mb-2">
                   Чекор 1: Што сѐ треба да се работи? (изберете повеќе)
                 </label>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -874,7 +894,7 @@
               <!-- STEP 2: Space Type & Approx Sqm -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                  <label class="block text-xs font-sans font-bold uppercase tracking-wider text-zinc-400 mb-2">
                     Чекор 2: Тип на објект
                   </label>
                   <div class="flex gap-2">
@@ -894,7 +914,7 @@
                 </div>
 
                 <div>
-                  <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                  <label class="block text-xs font-sans font-bold uppercase tracking-wider text-zinc-400 mb-2">
                     Приближна површина (m²)
                   </label>
                   <input type="text" id="inquirySqm" placeholder="Пр: 45 m² или 1 бања" class="w-full bg-[#181B22] border border-white/10 rounded-lg px-3.5 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E5252A]">
@@ -954,7 +974,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-mono text-[#E5252A] uppercase mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1C1F26] border border-white/10 text-xs font-sans font-bold text-[#E5252A] uppercase mb-3">
           Портфолио
         </div>
         <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -966,7 +986,7 @@
       </div>
 
       <!-- Filter Buttons -->
-      <div class="flex flex-wrap justify-center gap-2 mb-10">
+      <div id="galleryFilterContainer" class="flex flex-wrap justify-center gap-2 mb-10">
         <button data-filter="all" class="gallery-filter-btn px-4 py-2 rounded-lg bg-[#E5252A] text-white text-xs sm:text-sm font-semibold transition-all">
           Сите Проекти
         </button>
@@ -995,7 +1015,7 @@
           <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
             <img src="assets/images/roof-construction.jpg" alt="Изведба на нов кров и реконструкција" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Кровови & Санација</span>
+              <span class="text-[#E5252A] text-xs font-sans font-bold uppercase">Кровови & Санација</span>
               <h4 class="text-white font-bold text-base">Нов Кров & Кровна Конструкција</h4>
               <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
             </div>
@@ -1007,7 +1027,7 @@
           <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
             <img src="assets/images/tiles-bathroom.jpg" alt="Бања керамика изведба" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Керамика & Бањи</span>
+              <span class="text-[#E5252A] text-xs font-sans font-bold uppercase">Керамика & Бањи</span>
               <h4 class="text-white font-bold text-base">Мастер Бања 120x60cm</h4>
               <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
             </div>
@@ -1019,7 +1039,7 @@
           <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
             <img src="assets/images/gypsum-ceiling.jpg" alt="Гипс картон таван" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Гипс Картон</span>
+              <span class="text-[#E5252A] text-xs font-sans font-bold uppercase">Гипс Картон</span>
               <h4 class="text-white font-bold text-base">Каскаден Таван со Скриен LED</h4>
               <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
             </div>
@@ -1031,7 +1051,7 @@
           <div class="gallery-img-container rounded-2xl overflow-hidden border border-[#E5252A]/40 bg-[#14161A] h-72 relative">
             <img src="assets/images/flooring-vinyl.jpg" alt="Винил под монтажа" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Винил Подови (LVT/SPC)</span>
+              <span class="text-[#E5252A] text-xs font-sans font-bold uppercase">Винил Подови (LVT/SPC)</span>
               <h4 class="text-white font-bold text-base">Водоотпорен SPC Клик Под</h4>
               <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
             </div>
@@ -1043,7 +1063,7 @@
           <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
             <img src="assets/images/flooring-parquet.jpg" alt="Паркет рибина коска" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Дрвени Подови</span>
+              <span class="text-[#E5252A] text-xs font-sans font-bold uppercase">Дрвени Подови</span>
               <h4 class="text-white font-bold text-base">Дабов Паркет Herringbone</h4>
               <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
             </div>
@@ -1055,7 +1075,7 @@
           <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
             <img src="assets/images/apartment-complete.jpg" alt="Комплетна реновација" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-              <span class="text-[#E5252A] text-xs font-mono font-bold uppercase">Комплетна Реновација</span>
+              <span class="text-[#E5252A] text-xs font-sans font-bold uppercase">Комплетна Реновација</span>
               <h4 class="text-white font-bold text-base">Дневен Боравок & Салон</h4>
               <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
             </div>
@@ -1067,7 +1087,7 @@
           <div class="gallery-img-container rounded-2xl overflow-hidden border border-white/10 bg-[#14161A] h-72 relative">
             <img src="assets/images/renovation-before.jpg" alt="Бања пред реновирање" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-              <span class="text-zinc-400 text-xs font-mono font-bold uppercase">Пред Реновирање</span>
+              <span class="text-zinc-400 text-xs font-sans font-bold uppercase">Пред Реновирање</span>
               <h4 class="text-white font-bold text-base">Сурова Состојба на Бањата</h4>
               <p class="text-zinc-300 text-xs mt-1">Кликни за детален приказ</p>
             </div>
@@ -1091,7 +1111,7 @@
         </div>
         <div class="md:col-span-4 p-6 flex flex-col justify-between">
           <div class="space-y-3">
-            <span class="text-xs font-mono text-[#E5252A] font-bold">ANTHRA МАЈСТОРСКА ИЗВЕДБА</span>
+            <span class="text-xs font-sans text-[#E5252A] font-bold">ANTHRA МАЈСТОРСКА ИЗВЕДБА</span>
             <h3 id="lightboxTitle" class="text-xl font-bold text-white leading-snug">Наслов на проект</h3>
             <p id="lightboxDesc" class="text-zinc-300 text-sm leading-relaxed">Детален опис за изведените работи.</p>
           </div>
@@ -1166,7 +1186,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           <div class="lg:col-span-7 space-y-4">
-            <span class="text-xs font-mono text-[#E5252A] font-bold uppercase tracking-wider">Директна Комуникација</span>
+            <span class="text-xs font-sans text-[#E5252A] font-bold uppercase tracking-wider">Директна Комуникација</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
               Подготвени сте да го уредите вашиот простор?
             </h2>
@@ -1432,6 +1452,10 @@
       }
     }
   </style>
+
+  <!-- Supabase CDN & Anthra CMS Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
 
   <!-- JavaScript -->
   <script src="assets/js/main.js"></script>

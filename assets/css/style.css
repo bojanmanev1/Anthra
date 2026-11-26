@@ -11,6 +11,15 @@
   --anthra-card-border: rgba(255, 255, 255, 0.08);
 }
 
+/* Universal Non-Serif Typography Guarantee */
+html, body, button, input, select, textarea, span, p, h1, h2, h3, h4, h5, h6, label, div, a, li, ul {
+  font-family: 'Plus Jakarta Sans', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.font-mono, [class*="font-mono"], code, kbd, samp {
+  font-family: 'Space Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !important;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
