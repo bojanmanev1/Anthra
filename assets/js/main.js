@@ -446,28 +446,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 4. Project Gallery Filter & Lightbox (with Dynamic CMS Integration)
+  // 4. Project Gallery Filter & Lightbox (with Dynamic CMS Integration & Load More Pagination)
   const galleryFilterContainer = document.getElementById('galleryFilterContainer');
   const galleryContainer = document.getElementById('galleryContainer');
+  const galleryLoadMoreContainer = document.getElementById('galleryLoadMoreContainer');
+  const galleryLoadMoreBtn = document.getElementById('galleryLoadMoreBtn');
   const lightboxModal = document.getElementById('lightboxModal');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxTitle = document.getElementById('lightboxTitle');
   const lightboxDesc = document.getElementById('lightboxDesc');
   const closeLightbox = document.getElementById('closeLightbox');
 
+  const ITEMS_PER_PAGE = 6;
+  let visibleItemsCount = ITEMS_PER_PAGE;
   let activeGalleryFilter = 'all';
 
-  function applyGalleryFilter(filter) {
+  function applyGalleryFilter(filter, resetPagination = false) {
     activeGalleryFilter = filter;
+    if (resetPagination) {
+      visibleItemsCount = ITEMS_PER_PAGE;
+    }
+
     const items = document.querySelectorAll('.gallery-item');
+    const matchingItems = [];
+
     items.forEach(item => {
       if (filter === 'all' || (item.dataset.category && item.dataset.category.includes(filter))) {
+        matchingItems.push(item);
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+
+    matchingItems.forEach((item, index) => {
+      if (index < visibleItemsCount) {
         item.classList.remove('hidden');
       } else {
         item.classList.add('hidden');
       }
     });
+
+    if (galleryLoadMoreContainer) {
+      if (matchingItems.length > visibleItemsCount) {
+        galleryLoadMoreContainer.classList.remove('hidden');
+      } else {
+        galleryLoadMoreContainer.classList.add('hidden');
+      }
+    }
   }
+
+  // Load More Button Click Handler
+  if (galleryLoadMoreBtn) {
+    galleryLoadMoreBtn.addEventListener('click', () => {
+      visibleItemsCount += ITEMS_PER_PAGE;
+      applyGalleryFilter(activeGalleryFilter, false);
+    });
+  }
+
+  // Initial filter & pagination pass
+  applyGalleryFilter('all', true);
 
   // Delegated Filter Button Handler (works for both default & dynamically created category buttons)
   if (galleryFilterContainer) {
@@ -482,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       btn.classList.remove('bg-[#14161A]', 'text-zinc-400', 'border-white/10');
       btn.classList.add('bg-[#E5252A]', 'text-white', 'border-[#E5252A]');
-      applyGalleryFilter(btn.dataset.filter);
+      applyGalleryFilter(btn.dataset.filter, true);
     });
   }
 
